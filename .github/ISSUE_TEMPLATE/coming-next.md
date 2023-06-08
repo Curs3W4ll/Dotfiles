@@ -10,7 +10,7 @@ assignees: ''
 **What is this feature about?**
 Screenshots of want to change behavior, explain what this feature will change/permit.
 
-**How this solution will be done?**
+**How will this solution be done?**
 A clear and concise description of what you are planning to do to implement this new feature.
 
 **What needs to be done?**
