@@ -1,7 +1,7 @@
 ---
 name: Coming next
-about: Next features or upgrae I'm planning to do
-title: "[COMING] "
+about: Next features or upgrade I'm planning to do
+title: "[COMING] <Scope> - "
 labels: ''
 assignees: ''
 
