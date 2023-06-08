@@ -1,4 +1,14 @@
+<div align="center">
+
 # Dotfiles
+
+![Latest commit](https://img.shields.io/github/last-commit/Curs3W4ll/Dotfiles?style=flat)
+
+Personal Dotfiles. More information is in the [wiki](https://github.com/Curs3W4ll/Dotfiles/wiki)  
+[Deployment](#deployment) • [Zsh](#zsh) • [Neovim](#neovim) • [Terminator](#terminator)  
+[Screenshots](https://github.com/Curs3W4ll/Dotfiles/wiki/Screenshots)
+
+</div>
 
 Hey you, what's up? :wave:
 
@@ -9,6 +19,15 @@ First, you should know this repository comes from [Github](https://github.com/Cu
 The GitHub repository provides more features and links (wiki...) so it is recommended to see [this repository on Github](https://github.com/Curs3W4ll/Dotfiles).
 
 I manage my dotfiles using [chezmoi](https://www.chezmoi.io/). :house:  
+More information in the [deployment section](#deployment).
+
+I'm maintaining these configurations (except for the old Neovim vimscript one), so you can [report bugs](https://github.com/Curs3W4ll/Dotfiles/issues/new/choose) and [see what I plan to do](https://github.com/Curs3W4ll/Dotfiles/issues?q=is%3Aissue+is%3Aopen+label%3Acoming) (help is welcomed :love_letter:).
+
+## Deployment
+
+### `chezmoi`
+
+As said before, I use `chezmoi` to manage my configuration.  
 `chezmoi` is a Dotfiles manager CLI with many cool features, it can handle files, templates, secrets and more.  
 If you just want to use one of my configuration without syncing all of them, do not use `chezmoi` and use [installers per configuration](#installers-per-configuration).
 
@@ -58,28 +77,30 @@ chezmoi apply
 
 </details>
 
-I'm maintaining these configurations (except for the old Neovim vimscript one), so you can [report bugs](todo) and [see what I plan to do](todo) (help is welcomed :love_letter:). <!-- TODO: Add correct links -->
-
-## What's in this?
-
-In this Dotfiles repository, you will find configurations I use, for instance:
-- Neovim configuration ([vimscript](todo) (old, not maintained) and [lua](todo)) <!-- TODO: Add link to file/folder -->
-- [Terminator configuration](todo) <!-- TODO: Add link to file/folder -->
-- [Zsh configuration](todo) <!-- TODO: Add link to file/folder -->
-
-You will also find some documentation about common topics [in the wiki](todo). <!-- TODO: Add correct link -->
-
 ### Installers per configuration
 
 To help you install only the configurations you want, you can use the following commands:
 
 <details>
+<summary>ZSH</summary>
+
+#### ZSH installer
+
+Execute the following command to install my ZSH configuration.  
+See [configuration details](#zsh).
+```sh
+sh -c 'rm -f /tmp/zshInstaller.sh && curl -H "Cache-Control: no-cache, no-store" -fLo /tmp/zshInstaller.sh --create-dirs "https://raw.githubusercontent.com/Curs3W4ll/Dotfiles/master/installers/zsh.sh" && chmod +x /tmp/zshInstaller.sh && /tmp/./zshInstaller.sh'
+```
+
+</details>
+
+<details>
 <summary>Neovim</summary>
 
-#### Neovim
+#### Neovim installer
 
 Execute the following command to install my Neovim configuration (Lua version).  
-See [configuration details](todo). <!-- TODO: Add correct link -->
+See [configuration details](#neovim).
 ```sh
 sh -c 'rm -f /tmp/nvimLuaInstaller.sh && curl -H "Cache-Control: no-cache, no-store" -fLo /tmp/nvimLuaInstaller.sh --create-dirs "https://raw.githubusercontent.com/Curs3W4ll/Dotfiles/master/installers/nvim_lua.sh" && chmod +x /tmp/nvimLuaInstaller.sh && /tmp/./nvimLuaInstaller.sh'
 ```
@@ -87,7 +108,7 @@ sh -c 'rm -f /tmp/nvimLuaInstaller.sh && curl -H "Cache-Control: no-cache, no-st
 ##### Old Vimscript version
 
 If you want to install the older version of my Neovim configuration (using Vimscript), execute the following command.  
-See [configuration details](todo). <!-- TODO: Add correct link -->
+See [configuration details](#neovim).
 
 **:warning: This configuration is not maintained anymore, use it at your own risk**
 ```sh
@@ -99,25 +120,43 @@ sh -c 'rm -f /tmp/nvimVSInstaller.sh && curl -H "Cache-Control: no-cache, no-sto
 <details>
 <summary>Terminator</summary>
 
-#### Terminator
+#### Terminator installer
 
 Execute the following command to install my Terminator configuration.  
-See [configuration details](todo). <!-- TODO: Add correct link -->
+See [configuration details](#terminator).
 ```sh
 sh -c 'rm -f /tmp/terminatorInstaller.sh && curl -H "Cache-Control: no-cache, no-store" -fLo /tmp/terminatorInstaller.sh --create-dirs "https://raw.githubusercontent.com/Curs3W4ll/Dotfiles/master/installers/terminator.sh" && chmod +x /tmp/terminatorInstaller.sh && /tmp/./terminatorInstaller.sh'
 ```
 
 </details>
 
-<details>
-<summary>ZSH</summary>
+## What's in this?
 
-#### ZSH
+In this Dotfiles repository, you will find configurations I use, more details below.
 
-Execute the following command to install my ZSH configuration.  
-See [configuration details](todo). <!-- TODO: Add correct link -->
-```sh
-sh -c 'rm -f /tmp/zshInstaller.sh && curl -H "Cache-Control: no-cache, no-store" -fLo /tmp/zshInstaller.sh --create-dirs "https://raw.githubusercontent.com/Curs3W4ll/Dotfiles/master/installers/zsh.sh" && chmod +x /tmp/zshInstaller.sh && /tmp/./zshInstaller.sh'
-```
+You will also find some documentation about common topics [in the wiki](https://github.com/Curs3W4ll/Dotfiles/wiki).
 
-</details>
+---
+### ZSH
+
+<!-- TODO: Describe more -->
+
+[More information in the wiki](todo) <!-- TODO: Add wiki link -->
+
+---
+### Neovim
+
+<!-- TODO: Describe more -->
+
+[More information in the wiki](todo) <!-- TODO: Add wiki link -->
+
+#### Old Vimscript version
+
+[More information in the wiki](todo) <!-- TODO: Add wiki link -->
+
+---
+### Terminator
+
+<!-- TODO: Describe more -->
+
+[More information in the wiki](todo) <!-- TODO: Add wiki link -->
