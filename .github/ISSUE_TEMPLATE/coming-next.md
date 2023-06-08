@@ -2,7 +2,7 @@
 name: Coming next
 about: Next features or upgrade I'm planning to do
 title: "[COMING] <Scope> - "
-labels: ''
+labels: coming, enhancement
 assignees: ''
 
 ---
