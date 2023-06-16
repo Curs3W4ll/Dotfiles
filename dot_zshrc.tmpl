@@ -335,7 +335,7 @@ function merge-cc {
 # Git
 alias gss="git status"
 alias ga="git add"
-function gc {
+function git-commit {
     if [ -n "$1" ] && [ -n "$2" ]; then
         git commit -m "$1" -m "$2"
     elif [ -n "$1" ]; then
@@ -344,12 +344,13 @@ function gc {
         git commit
     fi
 }
+alias gc="git-commit"
 alias gp="git push origin \$(git branch --show-current)"
 alias gpl="git pull origin \$(git branch --show-current)"
 alias gpla="gpl && git fetch --all"
 alias gs="git switch"
 alias gb="git branch"
-function gbs {
+function git-branch-switch {
     if [ -z "$1" ]; then
         echo "Please provide a branch name to create"
     fi
@@ -357,6 +358,7 @@ function gbs {
     git branch "$1"
     git switch "$1"
 }
+alias gbs="git-branch-switch"
 alias gbdel="git branch -D"
 alias gbdelr="git push origin --delete"
 function gbdelall {
