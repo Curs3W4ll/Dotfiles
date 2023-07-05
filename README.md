@@ -139,9 +139,10 @@ You will also find some documentation about common topics [in the wiki](https://
 ---
 ### ZSH
 
-<!-- TODO: Describe more -->
+My ZSH configuration defines aliases, colors and other things.  
+My ZSH configuration uses OhMyZSH with plugins and the p10k theme.
 
-[More information in the wiki](todo) <!-- TODO: Add wiki link -->
+[More information in the wiki](https://github.com/Curs3W4ll/Dotfiles/wiki/ZSH)
 
 ---
 ### Neovim
