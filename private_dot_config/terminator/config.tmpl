@@ -1,0 +1,35 @@
+[global_config]
+  borderless = True
+  suppress_multiple_term_dialog = True
+[keybindings]
+  go_up = <Alt>K
+  go_down = <Alt>J
+  go_left = <Alt>H
+  go_right = <Alt>L
+  resize_up = <Ctrl><Shift>K
+  resize_down = <Ctrl><Shift>J
+  resize_left = <Ctrl><Shift>H
+  resize_right = <Ctrl><Shift>L
+  layout_launcher = <Primary><Alt>l
+[profiles]
+  [[default]]
+    background_color = "#1d1f20"
+    background_darkness = 0.95
+    background_type = transparent
+    use_system_font = False
+    font = Hack 10
+    show_titlebar = False
+    scrollbar_position = hidden
+    scrollback_infinite = True
+    copy_on_selection = True
+[layouts]
+  [[default]]
+    [[[child0]]]
+      type = Window
+      parent = ""
+      order = 0
+      maximised = True
+      fullscreen = False
+      title = {{ output "whoami" | trim }}@{{ output "hostname" | trim }}:~
+      last_active_window = True
+[plugins]
