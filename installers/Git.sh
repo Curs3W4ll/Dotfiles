@@ -54,21 +54,6 @@ else
     echo -e "${CyanColor}Using git at ${git}${NoColor}"
 fi
 
-zsh=$(which zsh)
-if [ $? -ne 0 ]; then
-    echo -e "${RedColor}Please install ZSH first${NoColor}"
-    missingPackage=true
-else
-    echo -e "${CyanColor}Using ZSH at ${zsh}${NoColor}"
-fi
-
-if ! [ -d ${HOME}/.oh-my-zsh ]; then
-    echo -e "${RedColor}Please install oh my zsh first (run: sh -c \"\$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\")${NoColor}"
-    missingPackage=true
-else
-    echo -e "${CyanColor}Using ohmyzsh at ${HOME}/.oh-my-zsh${NoColor}"
-fi
-
 if [ "$missingPackage" == "true" ]; then
     echo -e "${RedColor}Missing packages, please install them before${NoColor}"
     exit 1
@@ -80,7 +65,7 @@ set -eo pipefail
 # ===================================
 
 
-confirm "Using this script will remove the existing zsh configuration ('.zshrc' file, $HOME/.oh-my-zsh dir), Continue"
+confirm "Using this script will remove the existing git configuration ('${HOME}/.gitconfig' file), Continue"
 
 echo -e "${CyanColor}Cloning Dotfiles to ${dotfilesPath}${NoColor}"
 rm -rf $dotfilesPath
@@ -91,28 +76,8 @@ rm -rf $chezmoi
 sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /tmp
 $chezmoi init $dotfilesPath
 
-zshCustomPath=${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}
-
-zshInstallPath=$zshCustomPath/plugins/zsh-autosuggestions
-if ! [ -d $zshInstallPath ]; then
-    echo -e "${CyanColor}Installing zsh-autosuggestions plugin${NoColor}"
-    git clone https://github.com/zsh-users/zsh-autosuggestions $zshInstallPath
-fi
-
-zshInstallPath=$zshCustomPath/plugins/zsh-syntax-highlighting
-if ! [ -d $zshInstallPath ]; then
-    echo -e "${CyanColor}Installing zsh-syntax-highlighting plugin${NoColor}"
-    git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $zshInstallPath
-fi
-
-zshInstallPath=$zshCustomPath/themes/powerlevel10k
-if ! [ -d $zshInstallPath ]; then
-    echo -e "${CyanColor}Installing PowerLevel10k theme${NoColor}"
-    git clone --depth=1 https://github.com/romkatv/powerlevel10k.git $zshInstallPath
-fi
-
-echo -e "${CyanColor}Init ~/.zshrc file${NoColor}"
-$chezmoi apply ~/.zshrc ~/.p10k.zsh
+echo -e "${CyanColor}Init ~/.gitconfig file${NoColor}"
+$chezmoi apply ~/.gitconfig
 
 echo -e "${CyanColor}Removing cloned repository and chezmoi${NoColor}"
 rm -rf $dotfilesPath
