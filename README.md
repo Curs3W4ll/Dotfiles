@@ -125,7 +125,7 @@ sh -c 'rm -f /tmp/nvimVSInstaller.sh && curl -H "Cache-Control: no-cache, no-sto
 Execute the following command to install my Terminator configuration.
 See [configuration details](#terminator).
 ```sh
-sh -c 'rm -f /tmp/terminatorInstaller.sh && curl -H "Cache-Control: no-cache, no-store" -fLo /tmp/terminatorInstaller.sh --create-dirs "https://raw.githubusercontent.com/Curs3W4ll/Dotfiles/master/installers/terminator.sh" && chmod +x /tmp/terminatorInstaller.sh && /tmp/./terminatorInstaller.sh'
+sh -c 'rm -f /tmp/terminatorInstaller.sh && curl -H "Cache-Control: no-cache, no-store" -fLo /tmp/terminatorInstaller.sh --create-dirs "https://raw.githubusercontent.com/Curs3W4ll/Dotfiles/main/installers/Terminator.sh" && chmod +x /tmp/terminatorInstaller.sh && /tmp/./terminatorInstaller.sh'
 ```
 
 </details>
@@ -158,6 +158,7 @@ My ZSH configuration uses OhMyZSH with plugins and the p10k theme.
 ---
 ### Terminator
 
-<!-- TODO: Describe more -->
+My Terminator configuration defines how the Terminator will look.  
+It will also enable new key binds to make Terminator more easy to use.
 
-[More information in the wiki](todo) <!-- TODO: Add wiki link -->
+[More information in the wiki](https://github.com/Curs3W4ll/Dotfiles/wiki/Terminator)
