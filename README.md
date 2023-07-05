@@ -95,6 +95,32 @@ sh -c 'rm -f /tmp/zshInstaller.sh && curl -H "Cache-Control: no-cache, no-store"
 </details>
 
 <details>
+<summary>Terminator</summary>
+
+#### Terminator installer
+
+Execute the following command to install my Terminator configuration.
+See [configuration details](#terminator).
+```sh
+sh -c 'rm -f /tmp/terminatorInstaller.sh && curl -H "Cache-Control: no-cache, no-store" -fLo /tmp/terminatorInstaller.sh --create-dirs "https://raw.githubusercontent.com/Curs3W4ll/Dotfiles/main/installers/Terminator.sh" && chmod +x /tmp/terminatorInstaller.sh && /tmp/./terminatorInstaller.sh'
+```
+
+</details>
+
+<details>
+<summary>Git</summary>
+
+#### Git installer
+
+Execute the following command to install my Git configuration.
+See [configuration details](#git).
+```sh
+sh -c 'rm -f /tmp/gitInstaller.sh && curl -H "Cache-Control: no-cache, no-store" -fLo /tmp/gitInstaller.sh --create-dirs "https://raw.githubusercontent.com/Curs3W4ll/Dotfiles/main/installers/Git.sh" && chmod +x /tmp/gitInstaller.sh && /tmp/./gitInstaller.sh'
+```
+
+</details>
+
+<details>
 <summary>Neovim</summary>
 
 #### Neovim installer
@@ -117,19 +143,6 @@ sh -c 'rm -f /tmp/nvimVSInstaller.sh && curl -H "Cache-Control: no-cache, no-sto
 
 </details>
 
-<details>
-<summary>Terminator</summary>
-
-#### Terminator installer
-
-Execute the following command to install my Terminator configuration.
-See [configuration details](#terminator).
-```sh
-sh -c 'rm -f /tmp/terminatorInstaller.sh && curl -H "Cache-Control: no-cache, no-store" -fLo /tmp/terminatorInstaller.sh --create-dirs "https://raw.githubusercontent.com/Curs3W4ll/Dotfiles/main/installers/Terminator.sh" && chmod +x /tmp/terminatorInstaller.sh && /tmp/./terminatorInstaller.sh'
-```
-
-</details>
-
 ## What's in this?
 
 In this Dotfiles repository, you will find configurations I use, more details below.
@@ -145,6 +158,21 @@ My ZSH configuration uses OhMyZSH with plugins and the p10k theme.
 [More information in the wiki](https://github.com/Curs3W4ll/Dotfiles/wiki/ZSH)
 
 ---
+### Terminator
+
+My Terminator configuration defines how the Terminator will look.  
+It will also enable new key binds to make Terminator more easy to use.
+
+[More information in the wiki](https://github.com/Curs3W4ll/Dotfiles/wiki/Terminator)
+
+---
+### Git
+
+My Git configuration defines simple config such as the username and email used when committing changes.
+
+[More information in the wiki](https://github.com/Curs3W4ll/Dotfiles/wiki/Git)
+
+---
 ### Neovim
 
 <!-- TODO: Describe more -->
@@ -154,11 +182,3 @@ My ZSH configuration uses OhMyZSH with plugins and the p10k theme.
 #### Old Vimscript version
 
 [More information in the wiki](todo) <!-- TODO: Add wiki link -->
-
----
-### Terminator
-
-My Terminator configuration defines how the Terminator will look.  
-It will also enable new key binds to make Terminator more easy to use.
-
-[More information in the wiki](https://github.com/Curs3W4ll/Dotfiles/wiki/Terminator)
