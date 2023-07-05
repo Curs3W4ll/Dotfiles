@@ -104,7 +104,7 @@ if ! [ -d $zshInstallPath ]; then
 fi
 
 echo -e "${CyanColor}Init ~/.zshrc file${NoColor}"
-$chezmoi apply ~/.zshrc
+$chezmoi apply ~/.zshrc ~/.p10k.zsh
 
 echo -e "${CyanColor}Removing cloned repository and chezmoi${NoColor}"
 rm -rf $dotfilesPath
