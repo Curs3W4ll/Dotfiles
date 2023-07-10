@@ -5,7 +5,8 @@ CyanColor="\033[0;36m"
 RedColor="\033[0;91m"
 
 dotfilesPath="/tmp/CDotfiles"
-chezmoi="/tmp/chezmoi"
+nvimPath="$HOME/.config/nvim"
+cocPath="$HOME/.config/coc"
 
 function confirm {
     local _response
@@ -58,9 +59,16 @@ function check_dependency() {
     fi
 }
 
-
 check_dependency curl
 check_dependency git
+check_dependency nvim neovim
+check_dependency node nodeJS
+check_dependency yarn
+check_dependency pip "Python pip"
+check_dependency rg "ripgrep(https://github.com/BurntSushi/ripgrep)"
+check_dependency fd "fd(https://github.com/sharkdp/fd)"
+check_dependency tar
+check_dependency cmake
 
 if [ "$missingPackage" == "true" ]; then
     echo -e "${RedColor}Missing packages, please install them before${NoColor}"
@@ -73,23 +81,47 @@ set -eo pipefail
 # ===================================
 
 
-confirm "Using this script will remove the existing git configuration ('${HOME}/.gitconfig' file), Continue"
+confirm "Using this script will remove the existing Neovim configuration ('${HOME}/.config/nvim/**' files), Continue"
+
+echo -e "${CyanColor}Install pynvim${NoColor}"
+pip install pynvim
+
+echo -e "${CyanColor}Installing vim-plug for neovim${NoColor}"
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
 echo -e "${CyanColor}Cloning Dotfiles to ${dotfilesPath}${NoColor}"
 rm -rf $dotfilesPath
 git clone https://github.com/Curs3W4ll/Dotfiles ${dotfilesPath}
 
-echo -e "${CyanColor}Temporarily installing chezmoi${NoColor}"
-rm -rf $chezmoi
-sh -c "$(curl -fsLS get.chezmoi.io)" -- -b /tmp
-$chezmoi init $dotfilesPath
+echo -e "${CyanColor}Copying plugins list${NoColor}"
+rm -rf $nvimPath
+mkdir -p $nvimPath
+cp -r $dotfilesPath/nvim_vimscript/plugs-set/vimplug.vim $nvimPath/init.vim
 
-echo -e "${CyanColor}Init ~/.gitconfig file${NoColor}"
-$chezmoi apply ~/.gitconfig
+echo -e "${CyanColor}Installing onedark${NoColor}"
+rm -rf /tmp/onedark
+git clone https://github.com/joshdick/onedark.vim /tmp/onedark
+cp -r /tmp/onedark/colors $dotfilesPath/nvim_vimscript/colors
+cp -r /tmp/onedark/autoload $dotfilesPath/nvim_vimscript/autoload
 
-echo -e "${CyanColor}Removing cloned repository and chezmoi${NoColor}"
+echo -e "${CyanColor}Installing plugins${NoColor}"
+nvim -c PlugInstall -c qa
+
+echo -e "${CyanColor}Copying full config${NoColor}"
+rm -rf $nvimPath
+mkdir -p $nvimPath
+cp -r $dotfilesPath/nvim_vimscript/* $nvimPath
+rm -rf $cocPath
+mkdir -p $cocPath
+cp -r $dotfilesPath/nvim_vimscript/coc/* $cocPath
+
+echo -e "${CyanColor}Installing last plugins and coc${NoColor}"
+nvim -c PlugInstall -c PlugUpdate -c qa
+nvim -c "CocInstall coc-tabnine coc-snippets coc-yaml coc-tsserver coc-styled-components coc-sh coc-python coc-json coc-clangd"
+nvim -c "NightfoxCompile" -c qa
+
+echo -e "${CyanColor}Removing cloned repository${NoColor}"
 rm -rf $dotfilesPath
-rm -rf $chezmoi
 
 echo
 echo -e "${CyanColor}INSTALLATION SUCCESSFULL${NoColor}"

@@ -1,0 +1,89 @@
+# A valid snippet should starts with:
+# snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet i "Create a vue file import line"
+import $1 from "@/$0$1.$2";
+endsnippet
+
+snippet ic "Create a vue component file import line"
+import $1 from "@/components/$0$1.vue";
+endsnippet
+
+snippet iv "Create a vue view file import line"
+import $1 from "@/views/$0$1.vue";
+endsnippet
+
+snippet router "Create a new Vue Router 4"
+import { createRouter, createWebHistory } from "vue-router";
+
+const routes = [
+  $0
+];
+
+const router = createRouter({
+  history: createWebHistory(),
+  routes,
+  /* --- Custom css class for active routes --- */
+  // linkActiveClass: "travel-app-active-link",
+  /* --- Smooth scroll --- */
+  // scrollBehavior(to, from, savePosition) {
+  //   return (
+  //     savePosition ||
+  //     new Promise((resolve) => {
+  //       setTimeout(() => resolve({ top: 0, behavior: "smooth" }), 300);
+  //     })
+  //   );
+  // },
+});
+
+export default router;
+endsnippet
+
+snippet route "Create a new Vue Router 4 route template"
+{
+  path: "/$1",
+  name: "${2:$1}",
+  component: $3View,$0
+},
+endsnippet
+
+snippet routel "Create a new lazy loading Vue Router 4 route template"
+{
+  path: "/$1",
+  name: "${2:$1}",
+  component: () =>
+    import( /* webpackChunkName: "${3:$2}" */ "@/views/$4View.vue" ),
+},
+endsnippet
+
+snippet rprops "Create a new props element in a Vue Router 4 route"
+props: (route) => ({ ...route.params, $1: $0 }),
+endsnippet
+
+snippet rchildren "Create a new nested children list in a Vue Router 4 route"
+children: [
+  $0
+]
+endsnippet
