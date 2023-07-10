@@ -5,7 +5,6 @@ CyanColor="\033[0;36m"
 RedColor="\033[0;91m"
 
 dotfilesPath="/tmp/CDotfiles"
-destPath="$HOME"
 chezmoi="/tmp/chezmoi"
 
 function confirm {
