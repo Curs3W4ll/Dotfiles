@@ -96,13 +96,13 @@ git clone https://github.com/Curs3W4ll/Dotfiles ${dotfilesPath}
 echo -e "${CyanColor}Copying plugins list${NoColor}"
 rm -rf $nvimPath
 mkdir -p $nvimPath
-cp $dotfilesPath/data/nvim/plugs-set/vimplug.vim $nvimPath/init.vim
+cp -r $dotfilesPath/nvim_vimscript/plugs-set/vimplug.vim $nvimPath/init.vim
 
 echo -e "${CyanColor}Installing onedark${NoColor}"
 rm -rf /tmp/onedark
 git clone https://github.com/joshdick/onedark.vim /tmp/onedark
-cp /tmp/onedark/colors $dotfilesPath/data/nvim/colors -r
-cp /tmp/onedark/autoload $dotfilesPath/data/nvim/autoload -r
+cp -r /tmp/onedark/colors $dotfilesPath/nvim_vimscript/colors
+cp -r /tmp/onedark/autoload $dotfilesPath/nvim_vimscript/autoload
 
 echo -e "${CyanColor}Installing plugins${NoColor}"
 nvim -c PlugInstall -c qa
@@ -110,10 +110,10 @@ nvim -c PlugInstall -c qa
 echo -e "${CyanColor}Copying full config${NoColor}"
 rm -rf $nvimPath
 mkdir -p $nvimPath
-cp $dotfilesPath/data/nvim/* $nvimPath -r
+cp -r $dotfilesPath/nvim_vimscript/* $nvimPath
 rm -rf $cocPath
 mkdir -p $cocPath
-cp $dotfilesPath/data/coc/* $cocPath -r
+cp -r $dotfilesPath/nvim_vimscript/coc/* $cocPath
 
 echo -e "${CyanColor}Installing last plugins and coc${NoColor}"
 nvim -c PlugInstall -c PlugUpdate -c qa
