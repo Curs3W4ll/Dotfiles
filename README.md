@@ -181,7 +181,7 @@ My Git configuration defines simple config such as the username and email used w
 
 #### Old Vimscript version
 
-I have used my old Vimscript configuration for more than 2 years and it's working great, but I wanted to change to the new Lua technology and regresh a bit my configuration.  
+I have used my old Vimscript configuration for more than 2 years and it's working great, but I wanted to change to the new Lua technology and refresh a bit my configuration.  
 So as you may already understand, I do not use this configuration anymore and I do not (I don't want to) maintain it.
 
 If you want to use it, do it at your own risks, I will not provide you any help.
