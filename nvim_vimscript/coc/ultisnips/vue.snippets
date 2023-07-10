@@ -1,0 +1,421 @@
+# A valid snippet should starts with:
+# snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet template "Create a template html element"
+<template>
+  ${0:<div></div>}
+</template>
+endsnippet
+
+snippet script "Create a script html element"
+<script>
+export default {
+  $0
+};
+</script>
+endsnippet
+
+snippet scomponents "Create a script components part"
+components: {
+  $0
+},
+endsnippet
+
+snippet sdata "Create a script data part"
+data() {
+  return {
+    $0
+  };
+},
+endsnippet
+
+snippet sprops "Create a script props part"
+props: {
+  $0
+},
+endsnippet
+
+snippet sprop "Create a script prop"
+$1: {
+  type: ${2:String},
+  required: ${3:true},
+  default: ${4:""},
+  $0
+},
+endsnippet
+
+snippet scomputed "Create a script computed part"
+computed: {
+  $0
+},
+endsnippet
+
+snippet smethods "Create a script methods part"
+methods: {
+  $0
+},
+endsnippet
+
+snippet fun "Create a javascript function"
+${1:function}($2) {
+  return $0;
+},
+endsnippet
+
+snippet i "Create a vue file import line"
+import $1 from "@/$0$1.$2";
+endsnippet
+
+snippet ic "Create a vue component file import line"
+import $1 from "@/components/$0$1.vue";
+endsnippet
+
+snippet iv "Create a vue view file import line"
+import $1 from "@/views/$0$1.vue";
+endsnippet
+
+snippet style "Create a style html element"
+<style>
+$0
+</style>
+endsnippet
+
+snippet sstyle "Create a scoped style html element"
+<style scoped>
+$0
+</style>
+endsnippet
+
+snippet cc "Create a css stylesheet for class"
+.$1 {
+  $0;
+}
+endsnippet
+
+snippet ci "Create a css stylesheet for id"
+#$1 {
+  $0;
+}
+endsnippet
+
+snippet ct "Create a css stylesheet for a type"
+$1 {
+  $0;
+}
+endsnippet
+
+snippet div "Create a div html element"
+<div>
+  $0
+</div>
+endsnippet
+
+snippet divc "Create a div html element with a class attribute"
+<div class="${1:container}">
+  $0
+</div>
+endsnippet
+
+snippet divi "Create a div html element with an id attribute"
+<div id="${1:mainContainer}">
+  $0
+</div>
+endsnippet
+
+snippet section "Create a section html element"
+<section>
+  $0
+</section>
+endsnippet
+
+snippet sectionc "Create a section html element with a class attribute"
+<section class="$1">
+  $0
+</section>
+endsnippet
+
+snippet sectioni "Create a section html element with an id attribute"
+<section id="$1">
+  $0
+</section>
+endsnippet
+
+snippet h1 "Create a h1 html element"
+<h1>$0</h1>
+endsnippet
+
+snippet h1c "Create a h1 html element with a class attribute"
+<h1 class="${1:title}">$0</h1>
+endsnippet
+
+snippet h1i "Create a h1 html element with an id attribute"
+<h1 id="${1:title}">$0</h1>
+endsnippet
+
+snippet h2 "Create a h2 html element"
+<h2>$0</h2>
+endsnippet
+
+snippet h2c "Create a h2 html element with a class attribute"
+<h2 class="${1:subtitle}">$0</h2>
+endsnippet
+
+snippet h2i "Create a h2 html element with an id attribute"
+<h2 id="${1:subtitle}">$0</h2>
+endsnippet
+
+snippet h3 "Create a h3 html element"
+<h3>$0</h3>
+endsnippet
+
+snippet h3c "Create a h3 html element with a class attribute"
+<h3 class="$1">$0</h3>
+endsnippet
+
+snippet h3i "Create a h3 html element with an id attribute"
+<h3 id="$1">$0</h3>
+endsnippet
+
+snippet h4 "Create a h4 html element"
+<h4>$0</h4>
+endsnippet
+
+snippet h4c "Create a h4 html element with a class attribute"
+<h4 class="$1">$0</h4>
+endsnippet
+
+snippet h4i "Create a h4 html element with an id attribute"
+<h4 id="$1">$0</h4>
+endsnippet
+
+snippet h5 "Create a h5 html element"
+<h5>$0</h5>
+endsnippet
+
+snippet h5c "Create a h5 html element with a class attribute"
+<h5 class="$1">$0</h5>
+endsnippet
+
+snippet h5i "Create a h5 html element with an id attribute"
+<h5 id="$1">$0</h5>
+endsnippet
+
+snippet h6 "Create a h6 html element"
+<h6>$0</h6>
+endsnippet
+
+snippet h6c "Create a h6 html element with a class attribute"
+<h6 class="$1">$0</h6>
+endsnippet
+
+snippet h6i "Create a h6 html element with an id attribute"
+<h6 id="$1">$0</h6>
+endsnippet
+
+snippet p "Create a p html element"
+<p>$0</p>
+endsnippet
+
+snippet pc "Create a p html element with a class attribute"
+<p class="${1:text}">$0</p>
+endsnippet
+
+snippet pi "Create a p html element with an id attribute"
+<p id="${1:text}">$0</p>
+endsnippet
+
+snippet a "Create an a html element"
+<a href="$1">$0</a>
+endsnippet
+
+snippet ac "Create an a html element with a class attribute"
+<a class="${1:link}" href="$2">$0</a>
+endsnippet
+
+snippet ai "Create an a html element with an id attribute"
+<a id="${1:link}" href="$1">$0</a>
+endsnippet
+
+snippet span "Create a span html element"
+<span>
+  $0
+</span>
+endsnippet
+
+snippet spanc "Create a span html element with a class attribute"
+<span class="$1">
+  $0
+</span>
+endsnippet
+
+snippet spani "Create a span html element with an id attribute"
+<span id="$1">
+  $0
+</span>
+endsnippet
+
+snippet button "Create a button html element"
+<button @click="$1">$0</button>
+endsnippet
+
+snippet buttonc "Create a button html element with a class attribute"
+<button class="${1:btn}" @click="$1">$0</button>
+endsnippet
+
+snippet buttoni "Create a button html element with an id attribute"
+<button id="${1:btn}" @click="$1">$0</button>
+endsnippet
+
+snippet img "Create an image html element"
+<img src="$1" alt="$2" />
+endsnippet
+
+snippet imgc "Create an image html element with a class attribute"
+<img class="${1:img}" src="$1" alt="$2" />
+endsnippet
+
+snippet imgi "Create an image html element with an id attribute"
+<img id="${1:img}" src="$1" alt="$2" />
+endsnippet
+
+snippet table "Create a table html element"
+<table>
+  $0
+</table>
+endsnippet
+
+snippet tablec "Create a table html element with a class attribute"
+<table class="${1:table}">
+  $0
+</table>
+endsnippet
+
+snippet tablei "Create a table html element with an id attribute"
+<table id="${1:table}">
+  $0
+</table>
+endsnippet
+
+snippet tr "Create a tr html element"
+<tr>
+  $0
+</tr>
+endsnippet
+
+snippet trc "Create a tr html element with a class attribute"
+<tr class="${1:tableLine}">
+  $0
+</tr>
+endsnippet
+
+snippet tri "Create a tr html element with an id attribute"
+<tr id="${1:tableLine}">
+  $0
+</tr>
+endsnippet
+
+snippet td "Create a td html element"
+<td>
+  $0
+</td>
+endsnippet
+
+snippet tdc "Create a td html element with a class attribute"
+<td class="${1:tableElement}">
+  $0
+</td>
+endsnippet
+
+snippet tdi "Create a td html element with an id attribute"
+<td id="${1:tableElement}">
+  $0
+</td>
+endsnippet
+
+snippet th "Create a th html element"
+<th>
+  $0
+</th>
+endsnippet
+
+snippet thc "Create a th html element with a class attribute"
+<th class="${1:tableTitle}">
+  $0
+</th>
+endsnippet
+
+snippet thi "Create a th html element with an id attribute"
+<th id="${1:tableTitle}">
+  $0
+</th>
+endsnippet
+
+snippet routerview "Create a router-view vue element"
+<router-view />
+endsnippet
+
+snippet routerviewc "Create a router-view vue element with a class attribute"
+<router-view class="$1" />
+endsnippet
+
+snippet routerviewi "Create a router-view vue element with an id attribute"
+<router-view id="$1" />
+endsnippet
+
+snippet routerviewtrans "Create a router-view vue element with a transition"
+<router-view v-slot="{ Component }">
+  <transition name="$1" mode="$2">
+    <component :is="Component" :key="$route.path"></component>
+  </transition>
+</router-view>
+endsnippet
+
+snippet routerviewtransc "Create a router-view vue element with a transition with a class attribute"
+<router-view class="$1" v-slot="{ Component }">
+  <transition name="$1" mode="$2">
+    <component :is="Component" :key="$route.path"></component>
+  </transition>
+</router-view>
+endsnippet
+
+snippet routerviewtransi "Create a router-view vue element with a transition with an id attribute"
+<router-view id="$1" v-slot="{ Component }">
+  <transition name="$1" mode="$2">
+    <component :is="Component" :key="$route.path"></component>
+  </transition>
+</router-view>
+endsnippet
+
+snippet routerlink "Create a router-link vue element"
+<router-link to="$1">$0</router-link>
+endsnippet
+
+snippet routerlinkc "Create a router-link vue element with a class attribute"
+<router-link class="$1" to="$2">$0</router-link>
+endsnippet
+
+snippet routerlinki "Create a router-link vue element with an id attribute"
+<router-link id="$1" to="$2">$0</router-link>
+endsnippet

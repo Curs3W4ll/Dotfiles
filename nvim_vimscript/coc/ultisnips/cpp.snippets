@@ -1,0 +1,498 @@
+# A valid snippet should starts with:
+# snippet trigger_word [ "description" [ options ] ]
+#
+# and end with:
+#
+#		endsnippet
+#
+# Snippet options:
+#
+#		b - Beginning of line.
+#		i - In-word expansion.
+#		w - Word boundary.
+#		r - Regular expression
+#		e - Custom context snippet
+#		A - Snippet will be triggered automatically, when condition matches.
+#
+# Basic example:
+#
+#		snippet emitter "emitter properties" b
+#		private readonly ${1} = new Emitter<$2>()
+#		public readonly ${1/^_(.*)/$1/}: Event<$2> = this.$1.event
+#		endsnippet
+#
+# Online reference: https://github.com/SirVer/ultisnips/blob/master/doc/UltiSnips.txt
+
+snippet main "Create main using arguments" b
+int main(int ac, const char* av[])
+{
+	${0:code}
+	return 0;
+}
+endsnippet
+
+snippet mainn "Create simple main without arguments" bA
+int main()
+{
+	${0:code}
+	return 0;
+}
+endsnippet
+
+snippet inc "Create system include line" "re.match('^inc$', snip.buffer[snip.line])" bAe
+#include <${0:#lib}>
+endsnippet
+
+snippet Inc "Create custom include line" "re.match('^Inc$', snip.buffer[snip.line])" bAe
+#include "${0:#lib}.hpp"
+endsnippet
+
+snippet prag "Create pragma header" "re.match('^prag$', snip.buffer[snip.line])" bAe
+#pragma once
+endsnippet
+
+snippet cc "Create basic char named c"
+char c = 0;
+endsnippet
+
+snippet ss "Create basic string named s"
+char *s = NULL;
+endsnippet
+
+snippet si "Create basic short named i"
+short i = 0;
+endsnippet
+
+snippet sj "Create basic short named j"
+short j = 0;
+endsnippet
+
+snippet sy "Create basic short named y"
+short y = 0;
+endsnippet
+
+snippet ii "Create basic int named i"
+int i = 0;
+endsnippet
+
+snippet ij "Create basic int named j"
+int j = 0;
+endsnippet
+
+snippet iy "Create basic int named y"
+int y = 0;
+endsnippet
+
+snippet li "Create basic long named i"
+long i = 0;
+endsnippet
+
+snippet lj "Create basic long named j"
+long j = 0;
+endsnippet
+
+snippet ly "Create basic long named y"
+long y = 0;
+endsnippet
+
+snippet if "Create if"
+if (${1:condition}) {
+	${0:code}
+}
+endsnippet
+
+snippet ifs "Create short if" A
+if (${1:condition})
+	${0:code}
+endsnippet
+
+snippet elif "Create else if"
+else if (${1:condition}) {
+	${0:code}
+}
+endsnippet
+
+snippet else "Create else"
+else {
+	${0:code}
+}
+endsnippet
+
+snippet elifs "Create short else if" A
+else if (${1:condition})
+	${0:code}
+endsnippet
+
+snippet elses "Create short else"
+else
+	${0:code}
+endsnippet
+
+snippet switch "Create switch with default"
+switch (${1:variable}) {
+	case ${3:case}:
+		${0:code}
+		break;
+	default:
+		${2:code}
+		break;
+}
+endsnippet
+
+snippet switchs "Create switch without default" A
+switch (${1:variable}) {
+	case ${2:case}:
+		${0:code}
+		break;
+}
+endsnippet
+
+snippet case "Create a switch case" A
+case ${1:value}:
+	${0:code}
+	break;
+endsnippet
+
+snippet trn "Create ternaire"
+${1:condition} ? ${2:yes} : ${3:no}
+endsnippet
+
+snippet while "Create while"
+while (${1:condition}) {
+	${0:code}
+}
+endsnippet
+
+snippet whiles "Create short while" A
+while (${1:condition})
+	${0:code}
+endsnippet
+
+snippet for "Create for"
+for (${1:init}; ${2:condition}; ${3:index}) {
+	${0:code}
+}
+endsnippet
+
+snippet fors "Create short for"
+for (${1:init}; ${2:condition}; ${3:index})
+	${0:code}
+endsnippet
+
+snippet forn "Create navigator for" A
+for (${1:int i = 0}; ${2:i < count}; ${3:i++}) {
+	${0:code}
+}
+endsnippet
+
+snippet forsn "Create short navigator for"
+for (${1:int i = 0}; ${2:i < count}; ${3:i++})
+	${0:code}
+endsnippet
+
+snippet ctest "Criterion test template" A
+Test(${1:functionName}, ${2:testDescription})
+{
+	${3:code}
+
+	cr_assert_(${4:expected}, ${5:got});
+}
+endsnippet
+
+snippet ret "Basic return" A
+return $0;
+endsnippet
+
+snippet fun "Basic function definition"
+${1:void} ${2:function}() noexcept
+{
+	${0:code}
+}
+endsnippet
+
+snippet fun1 "Basic function definition with 1 parameter" A
+${1:void} ${2:function}(${3:int} ${4:var}) noexcept
+{
+	${0:code}
+	return ;
+}
+endsnippet
+
+snippet fun2 "Basic function definition with 2 parameters" A
+${1:void} ${2:function}(${3:int} ${4:var}, ${5:int} ${6:var}) noexcept
+{
+	${0:code}
+	return ;
+}
+endsnippet
+
+snippet fun3 "Basic function definition with 3 parameters" A
+${1:void} ${2:function}(${3:int} ${4:var}, ${5:int} ${6:var}, ${7:int} ${8:var}) noexcept
+{
+	${0:code}
+	return ;
+}
+endsnippet
+
+snippet fun4 "Basic function definition with 4 parameters" A
+${1:void} ${2:function}(${3:int} ${4:var}, ${5:int} ${6:var}, ${7:int} ${8:var}, ${9:int} ${10:var}) noexcept
+{
+	${0:code}
+	return ;
+}
+endsnippet
+
+snippet guard "Header guard" A
+#ifndef ${0:GUARD}_H
+	#define $0_H
+
+#endif
+endsnippet
+
+snippet dfun "Basic function prototype"
+${2:void} ${1:function}() noexcept;
+endsnippet
+
+snippet dfun1 "Basic function prototype with 1 parameter" A
+${2:void} ${1:function}(${3:int} ${4:var}) noexcept;
+endsnippet
+
+snippet dfun2 "Basic function prototype with 2 parameters" A
+${2:void} ${1:function}(${3:int} ${4:var}, ${5:int} ${6:var}) noexcept;
+endsnippet
+
+snippet dfun3 "Basic function prototype with 3 parameters" A
+${2:void} ${1:function}(${3:int} ${4:var}, ${5:int} ${6:var}, ${7:int} ${8:var}) noexcept;
+endsnippet
+
+snippet dfun4 "Basic function prototype with 4 parameters" A
+${2:void} ${1:function}(${3:int} ${4:var}, ${5:int} ${6:var}, ${7:int} ${8:var}, ${9:int} ${10:var}) noexcept;
+endsnippet
+
+snippet struct "Structure definition" bA
+struct ${1:name} {
+	${0:code};
+};
+endsnippet
+
+snippet llist "Linked list definition" bA
+struct ${1:name} {
+	${0:code};
+	struct $1* next;
+};
+endsnippet
+
+snippet enum "Enum definition" bA
+enum class ${1:name} {
+	${0:code},
+};
+endsnippet
+
+snippet nsp "Basic namespace" b
+namespace ${1:std} {
+
+${0}
+
+} // namespace $1
+endsnippet
+
+snippet bclass "Basic class" bA
+class ${1:Test} {
+	public:
+		$1() noexcept = default;
+		~$1() noexcept = default;
+		};
+endsnippet
+
+snippet sclass "Special members class" bA
+class ${1:Test} {
+	public:
+		$1() noexcept = default;
+		$1($1 const& other) noexcept = default;
+		$1($1&& other) noexcept = default;
+		~$1() noexcept = default;
+
+		$1& operator=($1 const& other) noexcept = default;
+		$1& operator=($1&& other) noexcept = default;
+};
+endsnippet
+
+snippet staticclass "Static class" bA
+class I${1:Test} {
+	public:
+		I$1() noexcept = delete;
+		~I$1() noexcept = delete;
+
+		static void display() noexcept;
+};
+endsnippet
+
+snippet staticsclass "Static class with special members" bA
+class I${1:Test} {
+	public:
+		I$1() noexcept = delete;
+		I$1(I$1 const& other) noexcept = delete;
+		I$1(I$1&& other) noexcept = delete;
+		~I$1() noexcept = delete;
+
+		I$1& operator=(I$1 const& other) noexcept = delete;
+		I$1& operator=(I$1&& other) noexcept = delete;
+};
+endsnippet
+
+snippet iclass "Interface class" bA
+class I${1:Test} {
+	public:
+		I$1() noexcept = default;
+		virtual ~I$1() noexcept = default;
+
+		virtual void display() noexcept = 0;
+};
+endsnippet
+
+snippet isclass "Interface class with special members" bA
+class I${1:Test} {
+	public:
+		I$1() noexcept = default;
+		I$1(I$1 const& other) noexcept = default;
+		I$1(I$1&& other) noexcept = default;
+		virtual ~I$1() noexcept = default;
+
+		I$1& operator=(I$1 const& other) noexcept = default;
+		I$1& operator=(I$1&& other) noexcept = default;
+};
+endsnippet
+
+snippet aclass "Abstract class" bA
+class A${1:Test} {
+	public:
+		A$1() noexcept = default;
+		virtual ~A$1() noexcept = default;
+
+		virtual void display() noexcept = 0;
+};
+endsnippet
+
+snippet asclass "Abstract class with special members" bA
+class A${1:Test} {
+	public:
+		A$1() noexcept = default;
+		A$1(A$1 const& other) noexcept = default;
+		A$1(A$1&& other) noexcept = default;
+		virtual ~A$1() noexcept = default;
+
+		A$1& operator=(A$1 const& other) noexcept = default;
+		A$1& operator=(A$1&& other) noexcept = default;
+};
+endsnippet
+
+snippet errclass "Error class" bA
+class ${1}Error: public std::exception {
+	public:
+		explicit $1Error(std::string const& message);
+		~$1Error() override = default;
+
+		const char* what() const noexcept override;
+
+    protected:
+        std::string message;
+};
+endsnippet
+
+snippet errsclass "Error class with special members" bA
+class ${1}Error: public std::exception {
+	public:
+		$1Error() noexcept = delete;
+		explicit $1Error(std::string const& message);
+		$1Error($1Error const& other) = default;
+		$1Error($1Error&& other) = default;
+		~$1Error() override = default;
+
+		$1Error& operator=($1Error const& other) = default;
+		$1Error& operator=($1Error&& other) = default;
+
+		const char* what() const noexcept override;
+
+    protected:
+        std::string message;
+};
+endsnippet
+
+snippet cout "Print some informations" bA
+std::cout << "${0}" << std::endl;
+endsnippet
+
+snippet cerr "Print some informations" bA
+std::cerr << "${0}" << std::endl;
+endsnippet
+
+snippet docfile "Doxygen documentation template for a file" bA
+/**
+ * @file $1
+ * @brief ${2:Brief of $1 file}
+ * @author ${3:curs3w4ll}
+ * @version ${4:1}
+ */
+
+endsnippet
+
+snippet docnsp "Doxygen documentation template for a namespace" bA
+/**
+ * @namespace $1
+ * @brief ${2:Brief of $1 namespace}
+ */
+endsnippet
+
+snippet docstruct "Doxygen documentation template for a struct" bA
+/**
+ * @struct $1
+ * @brief ${2:Brief of $1 structure}
+ */
+endsnippet
+
+snippet docenum "Doxygen documentation template for an enum" bA
+/**
+ * @enum $1
+ * @brief ${2:Brief of $1 enum}
+ */
+endsnippet
+
+snippet docclass "Doxygen documentation template for a class" bA
+/**
+ * @class $1
+ * @brief ${2:Brief of $1 class}
+ */
+endsnippet
+
+snippet docfun "Doxygen documentation template for a function" bA
+/**
+ * @brief ${1:Brief of the function}
+ *
+ * @param ${2:arg} ${3:$2 definition}
+ *
+ * @return ${4:Nothing}
+ *
+ * @throw ${5:std::exception} thrown if ${6:condition}
+ */
+endsnippet
+
+snippet docvar "Doxygen documentation template for a variable" bA
+/**
+ * @var $1
+ * @brief ${2:Brief of what the $1 var is}
+ */
+endsnippet
+
+snippet doctemp "Doxygen documentation template for a template" bA
+/**
+ * @brief ${1:Brief of what the template is}
+ *
+ * @tparam ${2:arg} ${3:$2 definition}
+ */
+endsnippet
+
+snippet doc "Doxygen documentation template for anything" b
+/**
+ * @brief $0
+ */
+endsnippet
