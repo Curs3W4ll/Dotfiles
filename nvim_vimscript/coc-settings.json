@@ -1,0 +1,13 @@
+{
+  "tabnine.enablePreselect": false,
+  "suggest.noselect": true,
+  "clangd.path": "/usr/bin/clangd-12",
+  "clangd.fallbackFlags": [ "-std=c++2a" ],
+  "snippets.ultisnips.pythonPrompt": false,
+  "languageserver": {
+		"qml": {
+			"command": "qmlls6",
+			"filetypes": ["qml"]
+		}
+	}
+}

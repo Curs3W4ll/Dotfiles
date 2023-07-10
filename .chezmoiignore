@@ -2,3 +2,4 @@ README.md
 .git
 .github
 installers/**/*
+nvim_vimscript/**/*
