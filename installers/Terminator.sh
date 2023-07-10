@@ -38,6 +38,14 @@ function confirm {
 set +eo pipefail
 missingPackage=false
 
+curl=$(which curl)
+if [ $? -ne 0 ]; then
+    echo -e "${RedColor}Please install curl first${NoColor}"
+    missingPackage=true
+else
+    echo -e "${CyanColor}Using curl at ${curl}${NoColor}"
+fi
+
 git=$(which git)
 if [ $? -ne 0 ]; then
     echo -e "${RedColor}Please install git first${NoColor}"
@@ -65,7 +73,7 @@ set -eo pipefail
 # ===================================
 
 
-confirm "Using this script will remove the existing zsh configuration ('${HOME}/.config/terminator/config' file), Continue"
+confirm "Using this script will remove the existing terminator configuration ('${HOME}/.config/terminator/config' file), Continue"
 
 echo -e "${CyanColor}Cloning Dotfiles to ${dotfilesPath}${NoColor}"
 rm -rf $dotfilesPath
