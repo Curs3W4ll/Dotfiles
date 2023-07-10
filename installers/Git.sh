@@ -38,21 +38,30 @@ function confirm {
 set +eo pipefail
 missingPackage=false
 
-curl=$(which curl)
-if [ $? -ne 0 ]; then
-    echo -e "${RedColor}Please install curl first${NoColor}"
-    missingPackage=true
-else
-    echo -e "${CyanColor}Using curl at ${curl}${NoColor}"
-fi
+# $1: Dependency command (to check if installed with 'which'
+# [$2]: Prettier name of the dependency
+function check_dependency() {
+    name=$1
+    if [ -z "$1" ]; then
+        return 1
+    fi
+    if [ -n "$2" ]; then
+        name=$2
+    fi
 
-git=$(which git)
-if [ $? -ne 0 ]; then
-    echo -e "${RedColor}Please install git first${NoColor}"
-    missingPackage=true
-else
-    echo -e "${CyanColor}Using git at ${git}${NoColor}"
-fi
+    out=$(which $1)
+    if [ $? -ne 0 ]; then
+        echo -e "${RedColor}Please install ${name} first ${NoColor}"
+        missingPackage=true
+        return 1
+    else
+        echo -e "${CyanColor}Using ${name} at ${out}${NoColor}"
+    fi
+}
+
+
+check_dependency curl
+check_dependency git
 
 if [ "$missingPackage" == "true" ]; then
     echo -e "${RedColor}Missing packages, please install them before${NoColor}"
@@ -85,4 +94,3 @@ rm -rf $chezmoi
 
 echo
 echo -e "${CyanColor}INSTALLATION SUCCESSFULL${NoColor}"
-echo -e "${CyanColor}Please restart your shell to configure the new one${NoColor}"

@@ -38,29 +38,31 @@ function confirm {
 set +eo pipefail
 missingPackage=false
 
-curl=$(which curl)
-if [ $? -ne 0 ]; then
-    echo -e "${RedColor}Please install curl first${NoColor}"
-    missingPackage=true
-else
-    echo -e "${CyanColor}Using curl at ${curl}${NoColor}"
-fi
+# $1: Dependency command (to check if installed with 'which'
+# [$2]: Prettier name of the dependency
+function check_dependency() {
+    name=$1
+    if [ -z "$1" ]; then
+        return 1
+    fi
+    if [ -n "$2" ]; then
+        name=$2
+    fi
 
-git=$(which git)
-if [ $? -ne 0 ]; then
-    echo -e "${RedColor}Please install git first${NoColor}"
-    missingPackage=true
-else
-    echo -e "${CyanColor}Using git at ${git}${NoColor}"
-fi
+    out=$(which $1)
+    if [ $? -ne 0 ]; then
+        echo -e "${RedColor}Please install ${name} first ${NoColor}"
+        missingPackage=true
+        return 1
+    else
+        echo -e "${CyanColor}Using ${name} at ${out}${NoColor}"
+    fi
+}
 
-zsh=$(which zsh)
-if [ $? -ne 0 ]; then
-    echo -e "${RedColor}Please install ZSH first${NoColor}"
-    missingPackage=true
-else
-    echo -e "${CyanColor}Using ZSH at ${zsh}${NoColor}"
-fi
+
+check_dependency curl
+check_dependency git
+check_dependency zsh
 
 if ! [ -d ${HOME}/.oh-my-zsh ]; then
     echo -e "${RedColor}Please install oh my zsh first (run: sh -c \"\$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\")${NoColor}"
