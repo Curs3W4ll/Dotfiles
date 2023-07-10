@@ -128,7 +128,7 @@ sh -c 'rm -f /tmp/gitInstaller.sh && curl -H "Cache-Control: no-cache, no-store"
 Execute the following command to install my Neovim configuration (Lua version).
 See [configuration details](#neovim).
 ```sh
-sh -c 'rm -f /tmp/nvimLuaInstaller.sh && curl -H "Cache-Control: no-cache, no-store" -fLo /tmp/nvimLuaInstaller.sh --create-dirs "https://raw.githubusercontent.com/Curs3W4ll/Dotfiles/master/installers/nvim_lua.sh" && chmod +x /tmp/nvimLuaInstaller.sh && /tmp/./nvimLuaInstaller.sh'
+sh -c 'rm -f /tmp/nvimLuaInstaller.sh && curl -H "Cache-Control: no-cache, no-store" -fLo /tmp/nvimLuaInstaller.sh --create-dirs "https://raw.githubusercontent.com/Curs3W4ll/Dotfiles/main/installers/Neovim_lua.sh" && chmod +x /tmp/nvimLuaInstaller.sh && /tmp/./nvimLuaInstaller.sh'
 ```
 
 ##### Old Vimscript version
@@ -175,15 +175,18 @@ My Git configuration defines simple config such as the username and email used w
 ---
 ### Neovim
 
-<!-- TODO: Describe more -->
+I previously used a Vimscript Neovim configuration I have built myself on over 2 years. But I wanted to change to the new Lua technology and refresh a bit my configuration.
 
-[More information in the wiki](todo) <!-- TODO: Add wiki link -->
+So I started a new Neovim configuration from scratch using Lua. The goal of this configuration is to boost Neovim as much as possible and I want to make this configuration evolve as much as possible.  
+The idea of this configuration is to be upgraded continuously and frequently. I also want to maintain this configuration, so if you find any bug or want a new feature, [please create a new issue](https://github.com/Curs3W4ll/Dotfiles/issues/new/choose).
+
+[More information in the wiki](https://github.com/Curs3W4ll/Dotfiles/wiki/Neovim)
 
 #### Old Vimscript version
 
 I have used my old Vimscript configuration for more than 2 years and it's working great, but I wanted to change to the new Lua technology and refresh a bit my configuration.  
 So as you may already understand, I do not use this configuration anymore and I do not (I don't want to) maintain it.
 
-If you want to use it, do it at your own risks, I will not provide you any help.
+:warning: If you want to use it, do it at your own risks, I will not provide you any help.
 
 [More information in the wiki](https://github.com/Curs3W4ll/Dotfiles/wiki/Neovim_vimscript)
