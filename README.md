@@ -138,7 +138,7 @@ See [configuration details](#neovim).
 
 **:warning: This configuration is not maintained anymore, use it at your own risk**
 ```sh
-sh -c 'rm -f /tmp/nvimVSInstaller.sh && curl -H "Cache-Control: no-cache, no-store" -fLo /tmp/nvimVSInstaller.sh --create-dirs "https://raw.githubusercontent.com/Curs3W4ll/Dotfiles/master/installers/nvim_lua.sh" && chmod +x /tmp/nvimVSInstaller.sh && /tmp/./nvimVSInstaller.sh'
+sh -c 'rm -f /tmp/nvimVSInstaller.sh && curl -H "Cache-Control: no-cache, no-store" -fLo /tmp/nvimVSInstaller.sh --create-dirs "https://raw.githubusercontent.com/Curs3W4ll/Dotfiles/master/installers/Neovim_vimscript.sh" && chmod +x /tmp/nvimVSInstaller.sh && /tmp/./nvimVSInstaller.sh'
 ```
 
 </details>
@@ -181,4 +181,9 @@ My Git configuration defines simple config such as the username and email used w
 
 #### Old Vimscript version
 
-[More information in the wiki](todo) <!-- TODO: Add wiki link -->
+I have used my old Vimscript configuration for more than 2 years and it's working great, but I wanted to change to the new Lua technology and regresh a bit my configuration.  
+So as you may already understand, I do not use this configuration anymore and I do not (I don't want to) maintain it.
+
+If you want to use it, do it at your own risks, I will not provide you any help.
+
+[More information in the wiki](https://github.com/Curs3W4ll/Dotfiles/wiki/Neovim_vimscript)
