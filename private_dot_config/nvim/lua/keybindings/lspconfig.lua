@@ -1,4 +1,61 @@
 local wk = require("which-key")
+local notify = require("notify")
+local utils = require("utils")
+
+local function getNamespacesByName(names)
+    local namespaces = {}
+    for i,e in pairs(vim.diagnostic.get_namespaces()) do
+        if utils.tbl_has_value(names, e.name) then
+            namespaces = utils.tbl_concat(namespaces, { i })
+        end
+    end
+    return namespaces
+end
+local function areDiagnosticsNamespacesDisabled(namespaces)
+    for _,namespace in ipairs(namespaces) do
+        if not vim.diagnostic.is_disabled(0, namespace) then
+            return false
+        end
+    end
+    return true
+end
+local function disableDiagnosticNamespaces(namespaces)
+    for _,namespace in ipairs(namespaces) do
+        vim.diagnostic.disable(0, namespace)
+        vim.diagnostic.reset(namespace, 0)
+    end
+end
+local function enableDiagnosticNamespaces(namespaces)
+    for _,namespace in ipairs(namespaces) do
+        vim.diagnostic.enable(0, namespace)
+    end
+end
+local function toggleGrammarChecks()
+    local linters = {
+        "codespell",
+        "proselint",
+        "vale",
+    }
+    local lintersNamespaces = getNamespacesByName(linters)
+
+    local grammarlyClient = require("lspconfig").util.get_active_client_by_name(0, "grammarly")
+    if (grammarlyClient and grammarlyClient.is_stopped() == false) or not areDiagnosticsNamespacesDisabled(lintersNamespaces) then
+        if grammarlyClient then
+            grammarlyClient.stop()
+        end
+        disableDiagnosticNamespaces(lintersNamespaces)
+        notify.notify("Grammar checkers have been turned off", "info")
+    else
+        local availableLSPForCurrentFt = utils.toList(require("lspconfig").util.get_config_by_ft(vim.bo.filetype), "name")
+        if utils.tbl_has_value(availableLSPForCurrentFt, "grammarly") then
+            vim.cmd("LspStart grammarly")
+        else
+            notify.notify("Cannot turn on grammarly LSP as it does not support the " .. vim.bo.filetype .. " filetype", "warn")
+        end
+        enableDiagnosticNamespaces(lintersNamespaces)
+        notify.notify("Grammar checkers have been turned on", "info")
+    end
+end
 
 wk.register({
     -- ================================
@@ -19,9 +76,14 @@ wk.register({
             -- ================================
             i = { ":LspInfo<CR>", "Display LSP infos of buffer" },
             r = { ":LspRestart<CR>", "Restart LSP server(s)" },
-            s = { ":LspStop<CR>", "Stop LSP server(s)" },
+            s = { ":LspStart<CR>", "Start LSP server(s)" },
+            S = { ":LspStop<CR>", "Stop LSP server(s)" },
         },
     },
+    -- ================================
+    -- ===           Misc           ===
+    -- ================================
+    ["<C-g>"] = { toggleGrammarChecks, "Toggle grammar-related checks (LSP & Linter)" },
 }, {
     mode = "n",
     prefix = "<leader>",
