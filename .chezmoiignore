@@ -2,5 +2,6 @@ README.md
 .git
 .github
 .gitignore
+Makefile
 installers/**/*
 nvim_vimscript/**/*
