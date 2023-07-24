@@ -12,7 +12,7 @@ return function()
             -- Git status
             "git_status",
             -- LSP symbols
-            -- "document_symbols", -- TODO wait for fix https://github.com/nvim-neo-tree/neo-tree.nvim/issues/879
+            "document_symbols",
         },
         -- Add a blank line at the top of the tree
         add_blank_line_at_top = true,
@@ -42,9 +42,9 @@ return function()
                     source = "git_status",
                 },
                 -- LSP symbols
-                -- {
-                --     source = "document_symbols", -- TODO wait for fix https://github.com/nvim-neo-tree/neo-tree.nvim/issues/879
-                -- },
+                {
+                    source = "document_symbols",
+                },
             },
         },
         events_handlers = {
@@ -128,7 +128,9 @@ return function()
                 },
             },
             -- Always focus current buffer file
-            follow_current_file = true,
+            follow_current_file = {
+                enabled = true,
+            },
             use_libuv_file_watcher = true,
             window = {
                 mappings = {
@@ -188,7 +190,9 @@ return function()
         },
         buffers = {
             -- Always focus current buffer file
-            follow_current_file = true,
+            follow_current_file = {
+                enabled = true,
+            },
             group_empty_dirs = false,
             show_unloaded = true,
             window = {
