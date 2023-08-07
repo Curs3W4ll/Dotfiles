@@ -18,6 +18,18 @@ neokit.array.forEach(escapeKeys, function(key)
     neokit.vim.map("i", key, "<ESC>")
 end)
 
+local function toggleMouseSupport()
+    local notify = require("notify").notify
+
+    if neokit.vim.getOption("mouse") == "" then
+        notify("Mouse support has been enabled")
+        neokit.vim.setOption("mouse", "nvi")
+    else
+        notify("Mouse support has been disabled")
+        neokit.vim.setOption("mouse", "")
+    end
+end
+
 -- =====================
 -- ===  Normal mode  ===
 -- =====================
@@ -49,6 +61,10 @@ wk.register({
         ["<leader><C-u>"] = { "<Cmd>Lazy update<CR><Cmd>MasonUpdate<CR><Cmd>MasonToolsUpdate<CR>", "Update plugins and tools", nowait = true },
         ["<leader><C-m>"] = { "<Cmd>Mason<CR>", "Open Mason (tools manager)", nowait = true },
         ["<leader><C-l>"] = { "<Cmd>Lazy<CR>", "Open Lazy (plugins manager)", nowait = true },
+        -- ================================
+        -- ===           Misc           ===
+        -- ================================
+        ["<C-m>"] = { toggleMouseSupport, "Toggle mouse support", nowait = true },
     },
 }, { mode = "n" })
 -- =====================
@@ -60,6 +76,10 @@ wk.register({
         -- ===          Saving          ===
         -- ================================
         ["<C-s>"] = { "<ESC><Cmd>w<CR>", "Save using common bindings" },
+        -- ================================
+        -- ===           Misc           ===
+        -- ================================
+        ["<C-m>"] = { toggleMouseSupport, "Toggle mouse support", nowait = true },
     },
 }, { mode = "i" })
 -- =====================
@@ -68,5 +88,9 @@ wk.register({
 wk.register({
     {
         ["<leader>r"] = { "\"hy:%s/<C-r>h//gc<left><left><left>", "Replace selected", nowait = true },
+        -- ================================
+        -- ===           Misc           ===
+        -- ================================
+        ["<C-m>"] = { toggleMouseSupport, "Toggle mouse support", nowait = true },
     },
 }, { mode = "v" })
