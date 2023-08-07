@@ -1,21 +1,20 @@
-local utils = require("utils")
+local neokit = require("neokit")
 
 local function parseOptions(options)
-  for option, value in pairs(options) do
-    utils.updateOption(option, value, window)
-  end
+    neokit.table.forEach(options, function(option, value)
+        neokit.vim.setOption(option, value)
+    end)
 end
 
 
-undodir = "/tmp/nvim_undodir"
+local undodir = "/tmp/nvim_undodir"
+neokit.fs.ensureDirectory(undodir)
 
-utils.ensureDirectory(undodir)
-
-options = {
+local options = {
   fixendofline = false,                                                       -- Disable adding new line at end of files when saving
   linebreak = true,                                                           -- Split too long line smartly
   wildignorecase = true,                                                      -- Make files auto-completion case insensitive
-  wildignore = utils.getOption("wildignore") .. "*.a,*.o,*.gcno,*.gcda",      -- Ignore patterns while auto-completing files
+  wildignore = neokit.vim.getOption("wildignore") .. "*.a,*.o,*.gcno,*.gcda", -- Ignore patterns while auto-completing files
   ignorecase = true,                                                          -- Make the search case insensitive
   termguicolors = true,                                                       -- Enable 24 bit colors
   clipboard = "unnamedplus",                                                  -- Using '+' register for yank, delete... operations

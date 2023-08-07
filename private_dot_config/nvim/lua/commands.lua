@@ -53,7 +53,7 @@ vim.api.nvim_create_autocmd(
     { "FileType" },
     {
         pattern = "dashboard",
-        command = "lua require('utils').unmap('<Space>')",
+        command = "lua require('neokit.vim').unmap('*', ' ')",
         group = filetypeDetectGroup,
     }
 )

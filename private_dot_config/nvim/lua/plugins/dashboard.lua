@@ -51,7 +51,6 @@ end
 
 local function get_header()
     local head = get_ascii_art()
-    head = vim.fn.extend(head, require("utils").get_random_ascii_art_contextualized())
     head = vim.fn.extend(head, {
         "",
         "",

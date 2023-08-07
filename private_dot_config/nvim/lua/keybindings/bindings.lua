@@ -1,5 +1,5 @@
 local wk = require("which-key")
-local map = require("utils").map
+local neokit = require("neokit")
 
 -- ================================
 -- ============Escaping============
@@ -14,9 +14,9 @@ local escapeKeys = {
     "Kj",
     "kJ",
 }
-for i = 1, #escapeKeys do
-    map("i", escapeKeys[i], "<ESC>")
-end
+neokit.array.forEach(escapeKeys, function(key)
+    neokit.vim.map("i", key, "<ESC>")
+end)
 
 -- =====================
 -- ===  Normal mode  ===
@@ -43,13 +43,6 @@ wk.register({
         -- ===          Search          ===
         -- ================================
         ["//"] = { "<Cmd>nohlsearch<CR>", "Disable search highlight" },
-        -- ================================
-        -- ===      Configuration       ===
-        -- ================================
-        ["<leader><C-r>"] = { function()
-            require("utils").reloadConfiguration()
-        end, "Reload neovim configuration", nowait = true },
-        ["<leader><C-e>"] = { "<Cmd>edit $MYVIMRC<CR>", "Edit neovim configuration", nowait = true }, -- TODO upgrade this binding, currently just open a the init.lua file, but would be better to also change the root and open neo-tree
         -- ================================
         -- ===      Tools managers      ===
         -- ================================

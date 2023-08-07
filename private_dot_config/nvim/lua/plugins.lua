@@ -195,7 +195,7 @@ require("lazy").setup({
     -- Tree (files explorer)
     {
         "nvim-neo-tree/neo-tree.nvim",
-        branch = "v2.x",
+        branch = "v3.x",
         dependencies = {
             "nvim-lua/plenary.nvim",
             "nvim-tree/nvim-web-devicons",
@@ -228,6 +228,10 @@ require("lazy").setup({
     },
     {
         "rcarriga/nvim-notify",
+        lazy = true,
+    },
+    {
+        "Curs3W4ll/NeoKit",
         lazy = true,
     },
 }, {

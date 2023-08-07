@@ -1,4 +1,4 @@
-local utils = require("utils")
+local neokit = require("neokit")
 
 local M = {
     lsp = {
@@ -357,34 +357,34 @@ local function groupByFt(src_tbl)
 end
 
 function M.lsp.list()
-    return utils.toList(M.lsp, "name")
+    return neokit.array.mergeTables(M.lsp, "name")
 end
 
 function M.dap.list()
-    return utils.toList(M.dap, "name")
+    return neokit.array.mergeTables(M.dap, "name")
 end
 
 function M.linter.list()
-    return utils.toList(M.linter, "name")
+    return neokit.array.mergeTables(M.linter, "name")
 end
 function M.linter.listLintersByFt()
     local list = groupByFt(M.linter)
 
     for i,elem in pairs(list) do
-        list[i] = utils.toList(elem, { "linter_name", "name" })
+        list[i] = neokit.array.mergeTables(elem, { "linter_name", "name" })
     end
 
     return list
 end
 
 function M.formatter.list()
-    return utils.toList(M.formatter, "name")
+    return neokit.array.mergeTables(M.formatter, "name")
 end
 function M.formatter.listFormattersByFt()
     local list = groupByFt(M.formatter)
 
     for key,elem in pairs(list) do
-        list[key] = utils.toList(elem, { "formatter_name", "name" })
+        list[key] = neokit.array.mergeTables(elem, { "formatter_name", "name" })
     end
 
     return list
@@ -393,10 +393,10 @@ end
 function M.list()
     local list = {}
 
-    list = utils.tbl_concat(list, M.lsp.list())
-    list = utils.tbl_concat(list, M.dap.list())
-    list = utils.tbl_concat(list, M.linter.list())
-    list = utils.tbl_concat(list, M.formatter.list())
+    list = neokit.array.concat(list, M.lsp.list())
+    list = neokit.array.concat(list, M.dap.list())
+    list = neokit.array.concat(list, M.linter.list())
+    list = neokit.array.concat(list, M.formatter.list())
 
     return list
 end
