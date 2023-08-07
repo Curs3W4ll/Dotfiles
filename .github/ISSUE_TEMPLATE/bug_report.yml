@@ -1,0 +1,78 @@
+---
+
+name: Bug report
+description: Create a report to help us improve
+title: "[BUG] <Scope> - "
+labels: [bug]
+body:
+  - type: checkboxes
+    attributes:
+      label: Is there an existing issue for this?
+      description: Please search to see if an issue already exists for the bug you encountered.
+      options:
+        - label: I have searched the existing issues
+          required: true
+    validations:
+      required: true
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: What happened?
+      description: Please describe the bug you are experiencing.
+      placeholder: "The issue is that..."
+    validations:
+      required: true
+  - type: textarea
+    id: steps-to-reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Steps to reproduce the behavior
+      placeholder: |
+        1. Go to '...'
+        2. Click on '....'
+        3. Scroll down to '....'
+        4. See error
+    validations:
+      required: true
+  - type: textarea
+    id: what-expected
+    attributes:
+      label: What did you expect to happen?
+      description: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: screenshots
+    attributes:
+      label: Screenshots of the bug
+      description: If applicable, add screenshots to help explain your problem.
+    validations:
+      required: false
+  - type: textarea
+    id: os-info
+    attributes:
+      label: Environment
+      description: Provide information about your machine configuration
+      value: |
+        "- OS: [e.g. Ubuntu]"
+        "- Version: [e.g. 20.04]"
+        "- Nvim version: [e.g. v0.9.1]"
+    validations:
+      required: true
+  - type: textarea
+    id: additional-information
+    attributes:
+      label: Additional Information
+      description: Additional context
+      placeholder: Add any other context or screenshots about the feature request here.
+    validations:
+      required: false
+  - type: input
+    id: commit
+    attributes:
+      label: commit
+      description: what commit triggered this issue?
+    validations:
+      required: false
+
+...
