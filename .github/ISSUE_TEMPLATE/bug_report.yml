@@ -37,8 +37,8 @@ body:
   - type: textarea
     id: what-expected
     attributes:
-      label: What did you expect to happen?
-      description: Expected behavior
+      label: Expected behavior
+      description: What did you expect to happen?
     validations:
       required: true
   - type: textarea
@@ -53,7 +53,7 @@ body:
     attributes:
       label: Environment
       description: Provide information about your machine configuration
-      value: |
+      placeholder: |
         "- OS: [e.g. Ubuntu]"
         "- Version: [e.g. 20.04]"
         "- Nvim version: [e.g. v0.9.1]"
