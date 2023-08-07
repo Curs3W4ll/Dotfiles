@@ -230,6 +230,10 @@ require("lazy").setup({
         "rcarriga/nvim-notify",
         lazy = true,
     },
+    {
+        "Curs3W4ll/NeoKit",
+        lazy = true,
+    },
 }, {
     install = {
         -- Setup colorscheme before setting up plugins (set colorscheme for lazy popup at startup)
