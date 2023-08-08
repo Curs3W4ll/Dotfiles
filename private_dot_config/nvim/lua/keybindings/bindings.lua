@@ -79,7 +79,7 @@ wk.register({
         -- ================================
         -- ===           Misc           ===
         -- ================================
-        ["<C-m>"] = { toggleMouseSupport, "Toggle mouse support", nowait = true },
+        ["<leader>m"] = { toggleMouseSupport, "Toggle mouse support", nowait = true },
     },
 }, { mode = "i" })
 -- =====================
@@ -91,6 +91,6 @@ wk.register({
         -- ================================
         -- ===           Misc           ===
         -- ================================
-        ["<C-m>"] = { toggleMouseSupport, "Toggle mouse support", nowait = true },
+        ["<leader>m"] = { toggleMouseSupport, "Toggle mouse support", nowait = true },
     },
 }, { mode = "v" })
