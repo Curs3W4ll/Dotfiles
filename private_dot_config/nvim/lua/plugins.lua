@@ -146,6 +146,16 @@ require("lazy").setup({
                 "folke/neodev.nvim",
                 config = require("plugins.neodev"),
             },
+            -- LSP UI
+            {
+                "nvimdev/lspsaga.nvim",
+                event = "VeryLazy",
+                config = require("plugins.lspsaga"),
+                    dependencies = {
+                    "nvim-treesitter/nvim-treesitter",
+                    "nvim-tree/nvim-web-devicons",
+                },
+            },
         },
         config = require("plugins.lspconfig"),
     },

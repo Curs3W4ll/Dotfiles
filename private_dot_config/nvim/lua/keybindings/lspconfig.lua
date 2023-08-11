@@ -61,23 +61,30 @@ wk.register({
     -- ================================
     -- ========== Navigation ==========
     -- ================================
-    n = { vim.diagnostic.goto_next, "Go to the next diagnostic" },
-    N = { vim.diagnostic.goto_prev, "Go to the previous diagnostic" },
+    n = { "<Cmd>Lspsaga diagnostic_jump_next<CR>", "Go to the next diagnostic" },
+    N = { "<Cmd>Lspsaga diagnostic_jump_prev<CR>", "Go to the previous diagnostic" },
     l = {
         name = "LSP",
         {
             -- ================================
             -- ============ Display ===========
             -- ================================
-            d = { vim.diagnostic.open_float, "Display diagnostics of a line" },
+            d = {
+                name = "Diagnostics",
+                c = { "<Cmd>Lspsaga show_cursor_diagnostics<CR>", "Display diagnostics of the cursor" },
+                l = { "<Cmd>Lspsaga show_line_diagnostics<CR>", "Display diagnostics of the line" },
+                b = { "<Cmd>Lspsaga show_buf_diagnostics<CR>", "Display diagnostics of the buffer" },
+                w = { "<Cmd>Lspsaga show_workspace_diagnostics<CR>", "Display diagnostics of the workspace" },
+            },
             l = { vim.diagnostic.setqflist, "Display diagnostics list in quickfix" },
             -- ================================
             -- ============   Misc  ===========
             -- ================================
-            i = { ":LspInfo<CR>", "Display LSP infos of buffer" },
-            r = { ":LspRestart<CR>", "Restart LSP server(s)" },
-            s = { ":LspStart<CR>", "Start LSP server(s)" },
-            S = { ":LspStop<CR>", "Stop LSP server(s)" },
+            i = { "<Cmd>LspInfo<CR>", "Display LSP infos of buffer" },
+            r = { "<Cmd>LspRestart<CR>", "Restart LSP server(s)" },
+            s = { "<Cmd>LspStart<CR>", "Start LSP server(s)" },
+            S = { "<Cmd>LspStop<CR>", "Stop LSP server(s)" },
+            f = { "<Cmd>Lspsaga finder<CR>", "Search references of the symbol under cursor" },
         },
     },
     -- ================================
@@ -106,7 +113,8 @@ return function(client, buf_nbr)
     end
     if client.supports_method("textDocument/definition") then
         wk.register({
-            gd = { vim.lsp.buf.definition, "Go to symbol definition" },
+            gd = { "<Cmd>Lspsaga goto_definition<CR>", "Go to symbol definition" },
+            gD = { "<Cmd>Lspsaga peek_definition<CR>", "Preview symbol definition" },
         }, opts)
     end
     if client.supports_method("textDocument/implementation") then
@@ -121,12 +129,13 @@ return function(client, buf_nbr)
     end
     if client.supports_method("textDocument/hover") then
         wk.register({
-            K = { vim.lsp.buf.hover, "Display symbol documentation" },
+            ["K<Space>"] = { "<Cmd>Lspsaga hover_doc<CR>", "Display symbol documentation" },
+            KK = { "<Cmd>Lspsaga hover_doc ++keep<CR>", "Open symbol documentation" },
         }, opts)
     end
     if client.supports_method("textDocument/codeAction") then
         wk.register({
-            ["<leader>ca"] = { vim.lsp.buf.code_action, "Display code actions for diagnostic" },
+            ["<leader>ca"] = { "<Cmd>Lspsaga code_action<CR>", "Display code actions for diagnostic" },
         }, opts)
         wk.register({
             ["<leader>qf"] = { applyCodeAction, "Apply quickfix for diagnostic" },
@@ -134,7 +143,7 @@ return function(client, buf_nbr)
     end
     if client.supports_method("textDocument/rename") then
         wk.register({
-            ["<leader>rn"] = { vim.lsp.buf.rename, "Rename symbol" },
+            ["<leader>rn"] = { "<Cmd>Lspsaga rename ++project<CR>", "Rename symbol" },
         }, opts)
     end
 
