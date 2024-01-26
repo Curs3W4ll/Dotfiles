@@ -15,7 +15,7 @@ export ZSH="$HOME/.oh-my-zsh"
 {{-   end }}
 {{- end }}
 {{- $homeDir := .chezmoi.homeDir }}
-{{- range $_, $relPath := list "bin" "go/bin" ".cargo/bin" ".local/bin" ".deno/bin" ".rbenv/bin" }}
+{{- range $_, $relPath := list "bin" "go/bin" ".cargo/bin" ".local/bin" ".deno/bin" ".rbenv/bin" ".dotnet/tools" }}
 {{    $path := joinPath $homeDir $relPath }}
 {{-   if stat $path }}
 {{-     $paths = mustAppend $paths $path }}
