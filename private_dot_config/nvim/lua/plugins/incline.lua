@@ -11,11 +11,14 @@ return function()
         bgFocused = ucolors.primary,
     }
     colors.fg = neokit.color.getContrastColor(colors.bg)
-    colors.fgFocused = neokit.color.getContrastColor(colors.bgFocused)
+    colors.fgFocused = neokit.color.getContrastColor(colors.bgFocused) == "dark" and ucolors.dark or ucolors.light
 
     require("incline").setup({
         render = function(props)
             local bufName = vim.api.nvim_buf_get_name(props.buf)
+            if bufName == "" then
+                return {}
+            end
             local isBufFocused = vim.api.nvim_get_current_buf() == props.buf
             local isBufModified = vim.api.nvim_get_option_value("modified", { buf = props.buf })
             local bufFiletype = vim.api.nvim_get_option_value("filetype", { buf = props.buf })
@@ -33,8 +36,10 @@ return function()
                 if iconName and iconName ~= "" then
                     result.icon, result.iconColor = devicons.get_icon_color(iconName)
                 end
+                if not result.icon or result.icon == "" then
+                    result.icon = "*"
+                end
             end
-            result.iconColorContrast = neokit.color.getContrastColor(result.iconColor) == "light" and ucolors.light or ucolors.dark
 
             local hasError = #vim.diagnostic.get(props.buf, { severity = vim.diagnostic.severity.ERROR }) > 0
             local hasWarning = #vim.diagnostic.get(props.buf, { severity = vim.diagnostic.severity.WARN }) > 0
@@ -46,15 +51,22 @@ return function()
                     " ",
                     result.icon,
                     " ",
-                    guibg = isBufFocused and result.iconColor or nil,
-                    guifg = isBufFocused and ucolors.dark or nil,
+                    guifg = isBufFocused and result.iconColor or nil,
                 },
                 {
-                    bufName,
+                    " ",
+                    neokit.fs.shortenPath(bufName, {
+                        len = 4,
+                        tail = 2,
+                        maxLength = vim.api.nvim_win_get_width(props.win) / 2,
+                        relative = true,
+                    }),
+                    " ",
                     gui = isBufModified and "bold,italic" or nil,
+                    guifg = isBufFocused and result.fgFocused or result.fg,
+                    guibg = isBufFocused and result.bgFocused or result.bg,
                 },
-                guibg = isBufFocused and result.bgFocused or result.bg,
-                guifg = isBufFocused and result.fgFocused or result.fg,
+                guibg = "#" .. string.format("%x", vim.api.nvim_get_hl(0, {name = "lualine_b_normal"}).bg),
             }
             if isBufModified then
                 table.insert(ret, {
@@ -65,8 +77,6 @@ return function()
             end
             if hasError or hasWarning or hasInfo or hasHint then
                 table.insert(ret, {
-                    " ",
-                    usigns.separator,
                     " ",
                     guifg = ucolors.indicator,
                 })
@@ -95,9 +105,12 @@ return function()
                     group = "DiagnosticHint",
                 })
             end
-            table.insert(ret, {
-                " ",
-            })
+            if hasError or hasWarning or hasInfo or hasHint then
+                table.insert(ret, {
+                    " ",
+                    guifg = ucolors.indicator,
+                })
+            end
             return ret
         end,
         window = {
