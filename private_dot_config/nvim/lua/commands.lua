@@ -34,7 +34,7 @@ vim.api.nvim_create_autocmd(
 vim.api.nvim_create_autocmd(
     { "FileType" },
     {
-        pattern = "svg,javascript,typescript,typescriptreact,groovy,yaml,vue,css,json,vim,xml",
+        pattern = "svg,javascript,typescript,typescriptreact,groovy,yaml,vue,css,json,vim,xml,html",
         command = "setlocal tabstop=2 shiftwidth=2",
         group = filetypeDetectGroup,
     }
