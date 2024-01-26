@@ -8,7 +8,7 @@ return function()
             -- Files explorer
             "filesystem",
             -- Opened uffers
-            "buffers",
+            -- "buffers",
             -- Git status
             "git_status",
             -- LSP symbols
