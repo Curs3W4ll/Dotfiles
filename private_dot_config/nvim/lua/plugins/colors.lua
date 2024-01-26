@@ -6,8 +6,8 @@ return {
         hint = vim.api.nvim_get_hl(0, { name = "DiagnosticHint" }),
     },
     light = "#c7f0e5",
-    dark = "#6a6e6d",
-    primary = "#3d9980",
-    secondary = "#2c5c4e",
+    dark = "#3d403f",
+    primary = "#5ee6c1",
+    secondary = "#2f735f",
     indicator = "#e0af68",
 }
