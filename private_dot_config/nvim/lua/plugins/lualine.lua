@@ -4,6 +4,8 @@ return function()
         options = {
             -- Airline theme
             theme = "tokyonight",
+            -- Keep only one line at the bottom for all the windows instead of one statusline for each window
+            globalstatus = true,
         },
         sections = {
             -- Display vim mode (normal, insert, command, visual) in first section
@@ -34,7 +36,6 @@ return function()
                 {
                     require("lazy.status").updates,
                     cond = require("lazy.status").has_updates,
-                    -- color = { fg = "#EB6E34" },
                     color = { fg = "#d44300" },
                 },
             },

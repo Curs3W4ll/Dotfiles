@@ -6,4 +6,5 @@ return {
         hint = "",
     },
     separator = "|",
+    ball = "",
 }

@@ -231,6 +231,15 @@ require("lazy").setup({
     {
         "moll/vim-bbye",
     },
+    -- Floating status lines
+    {
+        "b0o/incline.nvim",
+        dependencies = {
+            "nvim-tree/nvim-web-devicons",
+            "nvim-lua/plenary.nvim",
+        },
+        config = require("plugins.incline"),
+    },
     -- Utilities
     {
         "nvim-lua/plenary.nvim",
