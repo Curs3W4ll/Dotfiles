@@ -44,7 +44,9 @@ vim.api.nvim_create_autocmd(
     { "FileType" },
     {
         pattern = "qf,checkhealth,startuptime,help",
-        command = "map q :q<CR>",
+        callback = function()
+            require("neokit.vim").map("*", "q", ":q<CR>")
+        end,
         group = filetypeDetectGroup,
     }
 )
@@ -53,16 +55,42 @@ vim.api.nvim_create_autocmd(
     { "FileType" },
     {
         pattern = "dashboard",
-        command = "lua require('neokit.vim').unmap('*', ' ')",
+        callback = function()
+            require("neokit.vim").unmap("*", " ")
+        end,
         group = filetypeDetectGroup,
     }
 )
--- Markdown preview bindings
+-- Markdown files bindings
 vim.api.nvim_create_autocmd(
     { "FileType" },
     {
         pattern = "markdown",
-        command = "lua require('keybindings.peek')()",
+        callback = function()
+            require("keybindings.peek").markdown()
+        end,
+        group = filetypeDetectGroup,
+    }
+)
+-- C++ files bindings
+vim.api.nvim_create_autocmd(
+    { "FileType" },
+    {
+        pattern = "cpp",
+        callback = function()
+            require("keybindings.cppman").cpp()
+        end,
+        group = filetypeDetectGroup,
+    }
+)
+-- CPPMan files bindings
+vim.api.nvim_create_autocmd(
+    { "FileType" },
+    {
+        pattern = "cppman",
+        callback = function()
+            require("keybindings.cppman").cppman()
+        end,
         group = filetypeDetectGroup,
     }
 )
@@ -72,7 +100,9 @@ local yankGroup = vim.api.nvim_create_augroup("yank", { clear = true })
 vim.api.nvim_create_autocmd(
     { "TextYankPost" },
     {
-        command = "silent! lua vim.highlight.on_yank()",
+        callback = function()
+            vim.highlight.on_yank()
+        end,
         group = yankGroup,
     }
 )
@@ -112,7 +142,9 @@ vim.api.nvim_create_autocmd("User", {
 vim.api.nvim_create_autocmd(
     { "BufRead", "BufWrite" },
     {
-        command = "lua require('lint').try_lint()",
+        callback = function()
+            require("lint").try_lint()
+        end,
         group = filetypeDetectGroup,
     }
 )

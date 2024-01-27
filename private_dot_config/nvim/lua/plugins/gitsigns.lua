@@ -14,7 +14,7 @@ return function()
             virt_text_pos = "eol",
         },
         -- Calling custom bindings when detecting a file using git
-        on_attach = require("keybindings.gitsigns"),
+        on_attach = require("keybindings.gitsigns").git,
     })
 
 end
