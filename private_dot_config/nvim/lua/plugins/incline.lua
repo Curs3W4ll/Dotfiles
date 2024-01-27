@@ -14,6 +14,9 @@ return function()
     colors.fgFocused = neokit.color.getContrastColor(colors.bgFocused) == "dark" and ucolors.dark or ucolors.light
 
     require("incline").setup({
+        hide = {
+            cursorline = true,
+        },
         render = function(props)
             local bufName = vim.api.nvim_buf_get_name(props.buf)
             if bufName == "" then
