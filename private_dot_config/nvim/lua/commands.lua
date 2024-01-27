@@ -72,6 +72,28 @@ vim.api.nvim_create_autocmd(
         group = filetypeDetectGroup,
     }
 )
+-- C++ files bindings
+vim.api.nvim_create_autocmd(
+    { "FileType" },
+    {
+        pattern = "cpp",
+        callback = function()
+            require("keybindings.cppman").cpp()
+        end,
+        group = filetypeDetectGroup,
+    }
+)
+-- CPPMan files bindings
+vim.api.nvim_create_autocmd(
+    { "FileType" },
+    {
+        pattern = "cppman",
+        callback = function()
+            require("keybindings.cppman").cppman()
+        end,
+        group = filetypeDetectGroup,
+    }
+)
 
 local yankGroup = vim.api.nvim_create_augroup("yank", { clear = true })
 -- Blink content when yanking

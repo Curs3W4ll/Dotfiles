@@ -240,6 +240,14 @@ require("lazy").setup({
         },
         config = require("plugins.incline"),
     },
+    -- C++ online doc (cppreference.com)
+    {
+        "madskjeldgaard/cppman.nvim",
+        dependencies = {
+            "MunifTanjim/nui.nvim",
+        },
+        config = require("plugins.cppman"),
+    },
     -- Utilities
     {
         "nvim-lua/plenary.nvim",
