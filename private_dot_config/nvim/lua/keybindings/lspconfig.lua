@@ -100,51 +100,52 @@ local function applyCodeAction()
     vim.lsp.buf.code_action({ apply = true })
 end
 
-return function(client, buf_nbr)
-    local opts = {
-        mode = "n",
-        buffer = buf_nbr,
-    }
+return {
+    lsp = function(client, buf_nbr)
+        local opts = {
+            mode = "n",
+            buffer = buf_nbr,
+        }
 
-    if client.supports_method("textDocument/declaration") then
-        wk.register({
-            gD = { vim.lsp.buf.declaration, "Go to symbol declaration" },
-        }, opts)
-    end
-    if client.supports_method("textDocument/definition") then
-        wk.register({
-            gd = { "<Cmd>Lspsaga goto_definition<CR>", "Go to symbol definition" },
-            gD = { "<Cmd>Lspsaga peek_definition<CR>", "Preview symbol definition" },
-        }, opts)
-    end
-    if client.supports_method("textDocument/implementation") then
-        wk.register({
-            gi = { vim.lsp.buf.implementation, "Go to symbol implementation" },
-        }, opts)
-    end
-    if client.supports_method("textDocument/references") then
-        wk.register({
-            gr = { vim.lsp.buf.references, "Display symbol references" },
-        }, opts)
-    end
-    if client.supports_method("textDocument/hover") then
-        wk.register({
-            ["K<Space>"] = { "<Cmd>Lspsaga hover_doc<CR>", "Display symbol documentation" },
-            KK = { "<Cmd>Lspsaga hover_doc ++keep<CR>", "Open symbol documentation" },
-        }, opts)
-    end
-    if client.supports_method("textDocument/codeAction") then
-        wk.register({
-            ["<leader>ca"] = { "<Cmd>Lspsaga code_action<CR>", "Display code actions for diagnostic" },
-        }, opts)
-        wk.register({
-            ["<leader>qf"] = { applyCodeAction, "Apply quickfix for diagnostic" },
-        }, opts)
-    end
-    if client.supports_method("textDocument/rename") then
-        wk.register({
-            ["<leader>rn"] = { "<Cmd>Lspsaga rename ++project<CR>", "Rename symbol" },
-        }, opts)
-    end
-
-end
+        if client.supports_method("textDocument/declaration") then
+            wk.register({
+                gD = { vim.lsp.buf.declaration, "Go to symbol declaration" },
+            }, opts)
+        end
+        if client.supports_method("textDocument/definition") then
+            wk.register({
+                gd = { "<Cmd>Lspsaga goto_definition<CR>", "Go to symbol definition" },
+                gD = { "<Cmd>Lspsaga peek_definition<CR>", "Preview symbol definition" },
+            }, opts)
+        end
+        if client.supports_method("textDocument/implementation") then
+            wk.register({
+                gi = { vim.lsp.buf.implementation, "Go to symbol implementation" },
+            }, opts)
+        end
+        if client.supports_method("textDocument/references") then
+            wk.register({
+                gr = { vim.lsp.buf.references, "Display symbol references" },
+            }, opts)
+        end
+        if client.supports_method("textDocument/hover") then
+            wk.register({
+                ["K<Space>"] = { "<Cmd>Lspsaga hover_doc<CR>", "Display symbol documentation" },
+                KK = { "<Cmd>Lspsaga hover_doc ++keep<CR>", "Open symbol documentation" },
+            }, opts)
+        end
+        if client.supports_method("textDocument/codeAction") then
+            wk.register({
+                ["<leader>ca"] = { "<Cmd>Lspsaga code_action<CR>", "Display code actions for diagnostic" },
+            }, opts)
+            wk.register({
+                ["<leader>qf"] = { applyCodeAction, "Apply quickfix for diagnostic" },
+            }, opts)
+        end
+        if client.supports_method("textDocument/rename") then
+            wk.register({
+                ["<leader>rn"] = { "<Cmd>Lspsaga rename ++project<CR>", "Rename symbol" },
+            }, opts)
+        end
+    end,
+}

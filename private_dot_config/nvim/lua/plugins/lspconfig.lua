@@ -27,7 +27,7 @@ return function()
     -- ================================
     -- ===========LSP setup============
     -- ================================
-    local default_on_attach = require("keybindings.lspconfig")
+    local default_on_attach = require("keybindings.lspconfig").lsp
 
     for _,server in ipairs(lsp_servers) do
         local lsp_name = server.name
