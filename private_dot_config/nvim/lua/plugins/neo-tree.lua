@@ -172,10 +172,10 @@ return function()
                     [">"] = "set_root",
                     ["."] = "set_root",
                     ["H"] = "toggle_hidden",
-                    ["/"] = "fuzzy_finder",
+                    ["F"] = "fuzzy_finder",
                     ["D"] = "fuzzy_finder_directory",
                     ["#"] = "fuzzy_sorter",
-                    ["f"] = "filter_on_submit",
+                    ["/"] = "filter_on_submit",
                     ["<c-x>"] = "clear_filter",
                     ["gn"] = "next_git_modified",
                     ["gN"] = "prev_git_modified",
@@ -211,12 +211,11 @@ return function()
                 position = "float",
                 mappings = {
                     ["A"]  = "git_add_all",
-                    ["gu"] = "git_unstage_file",
+                    ["u"] = "git_unstage_file",
                     ["a"] = "git_add_file",
                     ["r"] = "git_revert_file",
                     ["c"] = "git_commit",
                     ["p"] = "git_push",
-                    ["g"] = "git_commit_and_push",
                 }
             }
         }
