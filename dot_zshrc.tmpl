@@ -344,7 +344,7 @@ function git-commit {
 alias gc="git-commit"
 alias gp="git push origin \$(git branch --show-current)"
 alias gpl="git pull origin \$(git branch --show-current)"
-alias gpla="gpl && git fetch --all"
+alias gpla="gpl ; git fetch --all"
 function git-switch {
     if [ -z "$1" ]; then
         git switch -
@@ -419,6 +419,9 @@ function recursive-git-pull-watch-directory {
 function rgpl {
     setopt dotglob
     recursive-git-pull-watch-directory $(pwd)
+}
+function gprune {
+    git prune ; git fetch -p ; git branch -vv | awk '/\[.*: gone\]/ || !/\[origin\// {print $1}' | xargs -r -I {} git branch -D {}
 }
 
 
