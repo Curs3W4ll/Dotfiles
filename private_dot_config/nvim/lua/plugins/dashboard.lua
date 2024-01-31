@@ -50,7 +50,7 @@ local function get_ascii_art()
 end
 
 local function get_header()
-    local head = get_ascii_art()
+    local head = vim.api.nvim_win_get_height(0) > 40 and get_ascii_art() or {}
     head = vim.fn.extend(head, {
         "",
         "",
