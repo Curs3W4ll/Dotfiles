@@ -2,10 +2,34 @@ local dap = require("dap")
 local dapui = require("dapui")
 local notify = require("notify")
 
+local neotree = require("neo-tree")
+local neotree_manager = require("neo-tree.sources.manager")
+local neotree_renderer = require("neo-tree.ui.renderer")
+
+local function is_neotree_filesystem_opened()
+    local state = neotree_manager.get_state("filesystem")
+    if state == nil then
+        return false
+    end
+    return neotree_renderer.tree_is_visible(state)
+end
+
 local notify_title = "Debug Adapter Protocol"
 local notify_opts = {
     title = notify_title,
 }
+local neotree_opened_before_dap = nil
+local function open()
+    neotree_opened_before_dap = is_neotree_filesystem_opened()
+    neotree.close_all()
+    dapui.open()
+end
+local function close()
+    if neotree_opened_before_dap == true then
+        vim.cmd.Neotree("show")
+    end
+    dapui.close()
+end
 local function continue()
     if dap.session() == nil then
         notify.notify("No active debug session, creating a new one", "warn", notify_opts)
@@ -33,6 +57,7 @@ end
 local function run_last()
     notify.notify("Starting new debug session based on last one", "info", notify_opts)
     dap.run_last()
+    open()
 end
 local function start()
     if dap.session() ~= nil then
@@ -41,6 +66,7 @@ local function start()
         notify.notify("Starting a new debug session", "info", notify_opts)
         dap.continue()
     end
+    open()
 end
 local function stop()
     if dap.session() == nil then
@@ -52,6 +78,7 @@ local function stop()
         end)
         dap.repl.close()
     end
+    close()
 end
 local function restart()
     if dap.session() == nil then
@@ -143,8 +170,8 @@ require("which-key").register({
         u = {
             name = "UI",
             t = { dapui.toggle, "Show/Hide DAP UI" },
-            o = { dapui.open, "Show DAP UI" },
-            c = { dapui.close, "Hide DAP UI" },
+            o = { open, "Show DAP UI" },
+            c = { close, "Hide DAP UI" },
             r = { function() dapui.open({ reset = true }) end, "Reset/Reload DAP UI" },
         },
     },
