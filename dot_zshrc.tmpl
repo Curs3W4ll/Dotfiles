@@ -345,14 +345,7 @@ alias gc="git-commit"
 alias gp="git push origin \$(git branch --show-current)"
 alias gpl="git pull origin \$(git branch --show-current)"
 alias gpla="gpl ; git fetch --all"
-function git-switch {
-    if [ -z "$1" ]; then
-        git switch -
-    else
-        git switch "$1"
-    fi
-}
-alias gs="git-switch"
+alias gs="git switch"
 alias gb="git branch"
 function git-branch-switch {
     if [ -z "$1" ]; then
