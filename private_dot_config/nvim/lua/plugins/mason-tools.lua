@@ -45,10 +45,10 @@ local M = {
         --{ name = "java-language-server" }, -- TODO: Configure
         -- Javascript / Typescript
         --{ name = "angular-language-server" }, -- TODO: Configure
-        --{ name = "eslint" }, -- TODO: Configure
+        { name = "eslint" }, -- TODO: Configure
         --{ name = "quick_lint_js" }, -- TODO: Configure
         --{ name = "rome" }, -- TODO: Configure
-        --{ name = "tsserver" }, -- TODO: Configure
+        { name = "tsserver" }, -- TODO: Configure
         --{ name = "vtsls" }, -- TODO: Configure
         -- JSON
         --{ name = "jsonls" }, -- TODO: Configure
@@ -103,11 +103,10 @@ local M = {
         -- Terraform
         --{ name = "terraformls" }, -- TODO: Configure
         --{ name = "tflint" }, -- TODO: Configure
-        --{ name = "volar" }, -- TODO: Configure
         -- Vim
         --{ name = "vimls" }, -- TODO: Configure
         -- VueJS
-        --{ name = "vuels" }, -- TODO: Configure
+        { name = "volar" }, -- TODO: Configure
         -- XML
         --{ name = "lemminx" }, -- TODO: Configure
         -- YAML
