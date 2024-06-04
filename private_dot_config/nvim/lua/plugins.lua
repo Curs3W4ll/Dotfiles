@@ -121,6 +121,13 @@ require("lazy").setup({
       },
     },
     config = require("plugins.cmp"),
+    opts = function(_, opts)
+      opts.sources = opts.sources or {}
+      table.insert(opts.sources, {
+        name = "lazydev",
+        group_index = 0,
+      })
+    end,
   },
   -- Snippets
   {
@@ -143,8 +150,21 @@ require("lazy").setup({
       },
       -- LSP overlay for nvim plugins
       {
-        "folke/neodev.nvim",
-        config = require("plugins.neodev"),
+        "folke/lazydev.nvim",
+        dependencies = {
+          {
+            "Bilal2453/luvit-meta",
+            lazy = true,
+          },
+        },
+        ft = "lua",
+        opts = {
+          library = {
+            -- See the configuration section for more details
+            -- Load luvit types when the `vim.uv` word is found
+            { path = "luvit-meta/library", words = { "vim%.uv" } },
+          },
+        },
       },
       -- LSP UI
       {
