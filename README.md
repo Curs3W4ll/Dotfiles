@@ -166,6 +166,13 @@ It will also enable new key binds to make Terminator more easy to use.
 [More information in the wiki](https://github.com/Curs3W4ll/Dotfiles/wiki/Terminator)
 
 ---
+### ITerm2
+
+My ITerm2 configuration defines how the settings for ITerm2 (settings & profiles).
+
+[More information in the wiki](https://github.com/Curs3W4ll/Dotfiles/wiki/ITerm2)
+
+---
 ### Git
 
 My Git configuration defines simple config such as the username and email used when committing changes.

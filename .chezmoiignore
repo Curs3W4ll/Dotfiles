@@ -7,3 +7,4 @@ installers/
 nvim_vimscript/
 scripts/
 private_dot_config/nvim/.stylua.toml
+iterm2/
