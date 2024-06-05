@@ -234,6 +234,17 @@ require("lazy").setup({
     },
     config = require("plugins.neo-tree"),
   },
+  -- Telescope (fuzzy finder)
+  {
+    "nvim-telescope/telescope.nvim",
+    branch = "0.1.x",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      "nvim-tree/nvim-web-devicons",
+    },
+    config = require("plugins.telescope"),
+  },
   -- Buffers line
   {
     "akinsho/bufferline.nvim",
