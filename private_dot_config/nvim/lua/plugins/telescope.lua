@@ -1,12 +1,16 @@
--- See for telescope support ?
--- https://github.com/folke/tokyonight.nvim#-overriding-colors--highlight-groups
---
--- See here for interessent mappings (like recent files)
--- https://github.com/folke/which-key.nvim#%EF%B8%8F-mappings
---
--- Use noice with telescope
--- https://github.com/folke/noice.nvim#-telescope
---
--- Change command used to open project in dashboard greater
--- Also change the open current files shortcut
--- Also change the open config files shortcut
+return function()
+  local actions = require("telescope.actions")
+
+  require("telescope").setup({
+    defaults = {
+      mappings = {
+        i = {
+          ["<C-u>"] = false,
+        },
+        n = {
+          ["<C-c>"] = actions.close,
+        },
+      },
+    },
+  })
+end
