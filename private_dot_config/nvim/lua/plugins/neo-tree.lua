@@ -1,5 +1,8 @@
 return function()
   vim.cmd("let g:neo_tree_remove_legacy_commands = 1")
+  local inputs = require("neo-tree.ui.inputs")
+  local popups = require("neo-tree.ui.popups")
+  local events = require("neo-tree.events")
 
   require("neo-tree").setup({
     -- Used sources
@@ -199,6 +202,55 @@ return function()
           ["r"] = "git_revert_file",
           ["c"] = "git_commit",
           ["p"] = "git_push",
+          ["n"] = {
+            function()
+              local cmd = { "git", "pull" }
+              local title = "git pull"
+
+              local result = vim.fn.systemlist(cmd)
+              if vim.v.shell_error ~= 0 or (#result > 0 and vim.startswith(result[1], "fatal:")) then
+                popups.alert("ERROR: " .. title, result)
+              end
+
+              events.fire_event(events.GIT_EVENT)
+              popups.alert(title, result)
+            end,
+            desc = "git_pull",
+          },
+          ["b"] = {
+            function()
+              local width = vim.fn.winwidth(0) - 2
+              local row = vim.api.nvim_win_get_height(0) - 3
+              local popup_opts = {
+                relative = "win",
+                position = {
+                  row = row,
+                  col = 0,
+                },
+                size = width,
+              }
+
+              inputs.input("Branch name: ", "", function(msg)
+                local cmd = { "git", "branch", msg }
+                local title = "git branch create switch"
+
+                local result = vim.fn.systemlist(cmd)
+                if vim.v.shell_error ~= 0 or (#result > 0 and vim.startswith(result[1], "fatal:")) then
+                  popups.alert("ERROR: " .. title, result)
+                end
+
+                cmd = { "git", "switch", msg }
+                result = vim.fn.systemlist(cmd)
+                if vim.v.shell_error ~= 0 or (#result > 0 and vim.startswith(result[1], "fatal:")) then
+                  popups.alert("ERROR: " .. title, result)
+                end
+
+                events.fire_event(events.GIT_EVENT)
+                popups.alert(title, result)
+              end, popup_opts)
+            end,
+            desc = "git_branch_create_switch",
+          },
         },
       },
     },
