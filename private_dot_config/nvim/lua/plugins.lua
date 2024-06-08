@@ -301,6 +301,10 @@ require("lazy").setup({
     "RRethy/vim-illuminate",
     config = require("plugins.illuminate"),
   },
+  -- Dims inactive portions of files
+  {
+    "folke/twilight.nvim",
+  },
   -- Utilities
   {
     "nvim-lua/plenary.nvim",
