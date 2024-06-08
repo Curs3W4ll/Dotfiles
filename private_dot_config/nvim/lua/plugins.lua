@@ -287,6 +287,7 @@ require("lazy").setup({
   -- References illumination
   {
     "RRethy/vim-illuminate",
+    config = require("plugins.illuminate"),
   },
   -- Utilities
   {
