@@ -284,6 +284,10 @@ require("lazy").setup({
     },
     config = require("plugins.cppman"),
   },
+  -- References illumination
+  {
+    "RRethy/vim-illuminate",
+  },
   -- Utilities
   {
     "nvim-lua/plenary.nvim",
