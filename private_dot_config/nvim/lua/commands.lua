@@ -29,7 +29,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 })
 -- Leave some windows faster
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = "qf,checkhealth,startuptime,help",
+  pattern = "qf,startuptime,help",
   callback = function()
     require("neokit.vim").map("*", "q", ":q<CR>")
   end,
