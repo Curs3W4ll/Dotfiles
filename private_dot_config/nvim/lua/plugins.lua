@@ -117,7 +117,13 @@ require("lazy").setup({
         dependencies = {
           "nvim-lua/plenary.nvim",
         },
+        ft = { "gitcommit", "neo-tree-popup" },
         config = require("plugins.cmpgit"),
+      },
+      {
+        "Dynge/gitmoji.nvim",
+        ft = { "gitcommit", "neo-tree-popup" },
+        config = require("plugins.gitmoji"),
       },
     },
     config = require("plugins.cmp"),
@@ -245,6 +251,12 @@ require("lazy").setup({
       {
         "nvim-telescope/telescope-fzf-native.nvim",
         build = "make",
+      },
+      {
+        "olacin/telescope-gitmoji.nvim",
+        dependencies = {
+          "nvim-lua/plenary.nvim",
+        },
       },
     },
     config = require("plugins.telescope"),

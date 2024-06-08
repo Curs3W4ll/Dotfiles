@@ -65,6 +65,12 @@ wk.register({
         end,
         "Search through current Git stashed files",
       },
+      g = {
+        function()
+          require("telescope").extensions.gitmoji.gitmoji()
+        end,
+        "Search through gitmojies",
+      },
     },
   },
 }, {
