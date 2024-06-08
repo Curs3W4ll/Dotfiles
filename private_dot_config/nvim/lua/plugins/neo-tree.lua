@@ -231,6 +231,9 @@ return function()
               }
 
               inputs.input("Branch name: ", "", function(msg)
+                vim.fn.systemlist({ "git", "pull" })
+                vim.fn.systemlist({ "git", "fetch", "--all" })
+
                 local cmd = { "git", "branch", msg }
                 local title = "git branch create switch"
 
