@@ -23,8 +23,8 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 })
 -- Set indentation to 2 spaces for some files
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = "svg,javascript,typescript,typescriptreact,groovy,yaml,vue,css,json,vim,xml,html",
-  command = "setlocal tabstop=2 shiftwidth=2",
+  pattern = "svg,javascript,typescript,typescriptreact,groovy,yaml,vue,css,json,vim,xml,html,lua",
+  command = "set tabstop=2 shiftwidth=2",
   group = filetypeDetectGroup,
 })
 -- Leave some windows faster

@@ -273,6 +273,9 @@ require("lazy").setup({
   -- Commenter
   {
     "terrortylor/nvim-comment",
+    dependencies = {
+      "JoosepAlviste/nvim-ts-context-commentstring",
+    },
     config = require("plugins.comment"),
   },
   -- Buffer deletion
@@ -304,6 +307,21 @@ require("lazy").setup({
   -- Dims inactive portions of files
   {
     "folke/twilight.nvim",
+  },
+  --
+  {
+    "nvim-treesitter/nvim-treesitter",
+    build = function()
+      require("nvim-treesitter.install").update({ with_sync = true })()
+    end,
+    dependencies = {
+      {
+        "windwp/nvim-ts-autotag",
+        config = require("plugins.ts-autotag"),
+      },
+      "nvim-treesitter/nvim-treesitter-context",
+    },
+    config = require("plugins.treesitter"),
   },
   -- Utilities
   {
