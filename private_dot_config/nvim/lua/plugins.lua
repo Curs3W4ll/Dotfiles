@@ -308,7 +308,7 @@ require("lazy").setup({
   {
     "folke/twilight.nvim",
   },
-  --
+  -- Tree sitter (better tree parsing)
   {
     "nvim-treesitter/nvim-treesitter",
     build = function()
@@ -322,6 +322,11 @@ require("lazy").setup({
       "nvim-treesitter/nvim-treesitter-context",
     },
     config = require("plugins.treesitter"),
+  },
+  -- Colors preview
+  {
+    "norcalli/nvim-colorizer.lua",
+    config = require("plugins.colorizer"),
   },
   -- Utilities
   {
