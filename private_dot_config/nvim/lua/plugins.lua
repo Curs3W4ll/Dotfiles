@@ -81,23 +81,18 @@ require("lazy").setup({
     build = "deno task --quiet build:fast",
     config = require("plugins.peek"),
   },
-  -- Better searching
-  {
-    "kevinhwang91/nvim-hlslens",
-    config = require("plugins.hlslens"),
-  },
   -- Scrollbar
   {
     "petertriho/nvim-scrollbar",
-    -- dependencies = {
-    --     "kevinhwang91/nvim-hlslens",
-    -- },
+    dependencies = {
+      "kevinhwang91/nvim-hlslens",
+      -- Git modifications signs
+      {
+        "lewis6991/gitsigns.nvim",
+        config = require("plugins.gitsigns"),
+      },
+    },
     config = require("plugins.scrollbar"),
-  },
-  -- Git modifications signs
-  {
-    "lewis6991/gitsigns.nvim",
-    config = require("plugins.gitsigns"),
   },
   -- Completion
   {
