@@ -328,6 +328,12 @@ require("lazy").setup({
     "norcalli/nvim-colorizer.lua",
     config = require("plugins.colorizer"),
   },
+  -- Auto pairs
+  {
+    "windwp/nvim-autopairs",
+    event = "InsertEnter",
+    config = require("plugins.autopairs"),
+  },
   -- Utilities
   {
     "nvim-lua/plenary.nvim",
