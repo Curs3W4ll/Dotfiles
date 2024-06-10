@@ -342,7 +342,16 @@ require("lazy").setup({
   {
     "lukas-reineke/indent-blankline.nvim",
     main = "ibl",
-    config = true,
+    config = require("plugins.indent-blankline"),
+  },
+  -- Windows arrangement & animations
+  {
+    "anuvyklack/windows.nvim",
+    dependencies = {
+      "anuvyklack/middleclass",
+      "anuvyklack/animation.nvim",
+    },
+    config = require("plugins.windows"),
   },
   -- Utilities
   {
