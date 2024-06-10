@@ -353,6 +353,11 @@ require("lazy").setup({
     },
     config = require("plugins.windows"),
   },
+  -- Code doc generation helper
+  {
+    "danymat/neogen",
+    config = true,
+  },
   -- Utilities
   {
     "nvim-lua/plenary.nvim",
