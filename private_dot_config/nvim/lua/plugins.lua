@@ -84,6 +84,12 @@ require("lazy").setup({
       vim.fn["mkdp#util#install"]()
     end,
   },
+  -- Markdown incode markup
+  {
+    "lukas-reineke/headlines.nvim",
+    dependencies = "nvim-treesitter/nvim-treesitter",
+    config = true,
+  },
   -- Scrollbar
   {
     "petertriho/nvim-scrollbar",
