@@ -77,9 +77,12 @@ require("lazy").setup({
   },
   -- Markdown previewer
   {
-    "toppair/peek.nvim",
-    build = "deno task --quiet build:fast",
-    config = require("plugins.peek"),
+    "iamcco/markdown-preview.nvim",
+    cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+    ft = { "markdown" },
+    build = function()
+      vim.fn["mkdp#util#install"]()
+    end,
   },
   -- Scrollbar
   {

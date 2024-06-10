@@ -47,7 +47,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = "markdown",
   callback = function()
-    require("keybindings.peek").markdown()
+    require("keybindings.markdown-preview").markdown()
   end,
   group = filetypeDetectGroup,
 })
