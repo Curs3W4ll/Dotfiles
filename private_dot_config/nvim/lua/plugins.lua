@@ -338,6 +338,12 @@ require("lazy").setup({
     event = "InsertEnter",
     config = require("plugins.autopairs"),
   },
+  -- Indentation markups
+  {
+    "lukas-reineke/indent-blankline.nvim",
+    main = "ibl",
+    config = true,
+  },
   -- Utilities
   {
     "nvim-lua/plenary.nvim",
