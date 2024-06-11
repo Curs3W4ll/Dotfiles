@@ -111,6 +111,7 @@ require("lazy").setup({
       "hrsh7th/cmp-path",
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-nvim-lsp",
+      "chrisgrieser/cmp_yanky",
       {
         "tzachar/cmp-tabnine",
         build = "./install.sh",
@@ -261,6 +262,11 @@ require("lazy").setup({
         dependencies = {
           "nvim-lua/plenary.nvim",
         },
+      },
+      -- Copy/paste helper
+      {
+        "gbprod/yanky.nvim",
+        config = true,
       },
     },
     config = require("plugins.telescope"),

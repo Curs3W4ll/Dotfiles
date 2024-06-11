@@ -45,6 +45,12 @@ wk.register({
       end,
       "Search through LSP diagnostics",
     },
+    p = {
+      function()
+        require("telescope").extensions.yank_history.yank_history()
+      end,
+      "Search through LSP diagnostics",
+    },
     g = {
       name = "Git actions",
       c = {
