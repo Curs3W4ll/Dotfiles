@@ -16,4 +16,5 @@ return function()
 
   require("telescope").load_extension("fzf")
   require("telescope").load_extension("gitmoji")
+  require("telescope").load_extension("yank_history")
 end

@@ -112,6 +112,12 @@ return function()
       { name = "nvim_lsp" },
     }, {
       { name = "path" },
+      {
+        name = "cmp_yanky",
+        option = {
+          minLength = 10,
+        },
+      },
       { name = "cmp_tabnine" },
     }),
     -- Define which snippet to use
