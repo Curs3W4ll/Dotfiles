@@ -139,14 +139,14 @@ return function()
           icon = " ",
           desc = "Files",
           group = "DiagnosticVirtualTextInfo",
-          action = "Telescope find_files",
+          action = "Telescope find_files hidden=true",
           key = "f",
         },
         {
           icon = " ",
           desc = "Config",
           group = "DiagnosticVirtualTextInfo",
-          action = "lua vim.cmd('silent cd ~/.local/share/chezmoi');require('telescope.builtin').find_files()",
+          action = "lua vim.cmd('silent cd ~/.local/share/chezmoi');require('telescope.builtin').find_files({ hidden = true })",
           key = "c",
         },
         {
@@ -174,7 +174,7 @@ return function()
         limit = 5,
         icon = " ",
         label = "Recent projects",
-        action = "Telescope find_files cwd=",
+        action = "Telescope find_files hidden=true cwd=",
       },
       -- Display recently opened files
       mru = {

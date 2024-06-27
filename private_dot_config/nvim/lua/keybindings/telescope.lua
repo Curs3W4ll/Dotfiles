@@ -5,19 +5,19 @@ wk.register({
     name = "Telescope",
     f = {
       function()
-        require("telescope.builtin").find_files()
+        require("telescope.builtin").find_files({ hidden = true })
       end,
       "Find files",
     },
     t = {
       function()
-        require("telescope.builtin").live_grep()
+        require("telescope.builtin").live_grep({ hidden = true })
       end,
       "Find text in files",
     },
     s = {
       function()
-        require("telescope.builtin").grep_string()
+        require("telescope.builtin").grep_string({ hidden = true })
       end,
       "Find the string under the cursor",
     },
@@ -41,7 +41,7 @@ wk.register({
     },
     d = {
       function()
-        require("telescope.builtin").diagnostics()
+        require("telescope.builtin").diagnostics({ hidden = true })
       end,
       "Search through LSP diagnostics",
     },
@@ -67,7 +67,7 @@ wk.register({
       },
       s = {
         function()
-          require("telescope.builtin").git_stash()
+          require("telescope.builtin").git_stash({ hidden = true })
         end,
         "Search through current Git stashed files",
       },
