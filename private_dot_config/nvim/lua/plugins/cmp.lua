@@ -46,7 +46,7 @@ return function()
     },
     mapping = cmp.mapping.preset.insert({
       -- Use selected item
-      -- ["<CR>"] = cmp.mapping.confirm({ select = true }),
+      ["<CR>"] = cmp.mapping.confirm({ select = true }),
       -- Trigger completion window
       ["<C-Space>"] = cmp.mapping.complete(),
       -- Hide completion window
@@ -108,7 +108,7 @@ return function()
     },
     -- Defining completion sources
     sources = cmp.config.sources({
-      { name = "luasnip" },
+      { name = "luasnip", option = { show_autosnippets = true } },
       { name = "nvim_lsp" },
     }, {
       { name = "path" },
@@ -123,9 +123,6 @@ return function()
     -- Define which snippet to use
     snippet = {
       expand = function(args)
-        if not luasnip then
-          return
-        end
         luasnip.lsp_expand(args.body)
       end,
     },

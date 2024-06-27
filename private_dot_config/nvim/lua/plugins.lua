@@ -112,6 +112,14 @@ require("lazy").setup({
       "hrsh7th/cmp-cmdline",
       "hrsh7th/cmp-nvim-lsp",
       "chrisgrieser/cmp_yanky",
+      -- Snippets
+      { "saadparwaiz1/cmp_luasnip" },
+      {
+        "L3MON4D3/LuaSnip",
+        version = "v2.*",
+        build = "make install_jsregexp",
+        config = require("plugins.luasnip"),
+      },
       {
         "tzachar/cmp-tabnine",
         build = "./install.sh",
@@ -139,12 +147,6 @@ require("lazy").setup({
         group_index = 0,
       })
     end,
-  },
-  -- Snippets
-  {
-    "L3MON4D3/LuaSnip",
-    version = "1.*",
-    build = "make install_jsregexp",
   },
   -- LSP
   {
