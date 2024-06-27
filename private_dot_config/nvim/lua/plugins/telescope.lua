@@ -11,6 +11,9 @@ return function()
           ["<C-c>"] = actions.close,
         },
       },
+      file_ignore_patterns = {
+        ".git/",
+      },
     },
   })
 
