@@ -364,7 +364,7 @@ require("lazy").setup({
   -- Code doc generation helper
   {
     "danymat/neogen",
-    config = true,
+    config = require("plugins.neogen"),
   },
   -- Utilities
   {
