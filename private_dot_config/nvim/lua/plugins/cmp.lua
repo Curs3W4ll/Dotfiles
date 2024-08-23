@@ -46,7 +46,7 @@ return function()
     },
     mapping = cmp.mapping.preset.insert({
       -- Use selected item
-      ["<CR>"] = cmp.mapping.confirm({ select = true }),
+      ["<CR>"] = cmp.mapping.confirm(),
       -- Trigger completion window
       ["<C-Space>"] = cmp.mapping.complete(),
       -- Hide completion window
@@ -55,8 +55,8 @@ return function()
       ["<Tab>"] = cmp.mapping(function(fallback)
         if cmp.visible() then
           cmp.select_next_item()
-        elseif luasnip.expand_or_jumpable() then
-          luasnip.expand_or_jump()
+        elseif luasnip.expand_or_jumpable(1) then
+          luasnip.expand_or_jump(1)
         elseif has_word_before() then
           cmp.complete()
         else
@@ -72,7 +72,23 @@ return function()
         else
           fallback()
         end
-      end),
+      end, { "i", "s" }),
+      -- Navigate forward through snippet choices
+      ["<C-n>"] = cmp.mapping(function(fallback)
+        if luasnip.choice_active() then
+          luasnip.change_choice(1)
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
+      -- Navigate backward through snippet choices
+      ["<C-p>"] = cmp.mapping(function(fallback)
+        if luasnip.choice_active() then
+          luasnip.change_choice(-1)
+        else
+          fallback()
+        end
+      end, { "i", "s" }),
     }),
     -- Completion items format
     formatting = {
