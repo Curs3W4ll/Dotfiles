@@ -62,7 +62,7 @@ local M = {
         settings = {
           Lua = {
             diagnostics = {
-              globals = { "vim" },
+              globals = { "vim", "s", "i", "sn", "t", "fmt" },
             },
           },
         },
