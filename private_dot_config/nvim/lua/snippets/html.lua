@@ -393,6 +393,39 @@ return {
     t(" />"),
   }),
   s({
+    trig = "in",
+    name = "input HTML element",
+    dscr = "Insert an input HTML element",
+  }, {
+    t("<input"),
+    c(1, {
+      sn(nil, {
+        t(" id=\""),
+        i(1),
+        t("\""),
+      }),
+      i(nil, ""),
+    }),
+    c(2, {
+      sn(nil, {
+        t(" class=\""),
+        i(1, "input"),
+        t("\""),
+      }),
+      i(nil, ""),
+    }),
+    t(" type=\""),
+    i(3, "text"),
+    t("\""),
+    t(" name=\""),
+    i(4),
+    t("\""),
+    t(" placeholder=\""),
+    i(5),
+    t("\""),
+    t(" />"),
+  }),
+  s({
     trig = "tbl",
     name = "tbl HTML element",
     dscr = "Insert a table HTML element",
