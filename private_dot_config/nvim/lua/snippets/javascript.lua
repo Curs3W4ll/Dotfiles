@@ -144,7 +144,7 @@ return {
     i(2),
   }),
   s({
-    trig = "vis",
+    trig = "visit",
     name = "visit [tests]",
     dscr = "Insert a cypress visit command",
   }, {
