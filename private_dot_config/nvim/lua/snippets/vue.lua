@@ -870,7 +870,7 @@ return {
     name = "v-for loop",
     dscr = "Insert a vue v-for",
   }, {
-    t("v-for\""),
+    t("v-for=\""),
     i(1, "item"),
     t(" in "),
     i(2, "items"),
