@@ -48,7 +48,7 @@ local M = {
     { name = "eslint" }, -- TODO: Configure
     --{ name = "quick_lint_js" }, -- TODO: Configure
     --{ name = "rome" }, -- TODO: Configure
-    { name = "tsserver" }, -- TODO: Configure
+    { name = "ts_ls" }, -- TODO: Configure
     --{ name = "vtsls" }, -- TODO: Configure
     -- JSON
     --{ name = "jsonls" }, -- TODO: Configure
@@ -365,6 +365,27 @@ end
 function M.dap.list()
   return neokit.array.mergeTables(M.dap, "name")
 end
+function M.dap.listDapFt()
+  local fts = {}
+  local seen = {}
+
+  for _, dap_entry in ipairs(M.dap) do
+    if dap_entry.configs then
+      for _, config in ipairs(dap_entry.configs) do
+        if config.config_ft then
+          for _, ft in ipairs(config.config_ft) do
+            if not seen[ft] then
+              table.insert(fts, ft)
+              seen[ft] = true
+            end
+          end
+        end
+      end
+    end
+  end
+
+  return fts
+end
 
 function M.linter.list()
   return neokit.array.mergeTables(M.linter, "name")
@@ -378,6 +399,16 @@ function M.linter.listLintersByFt()
 
   return list
 end
+function M.linter.listLintersFt()
+  local list = groupByFt(M.linter)
+  local fts = {}
+
+  for key, _ in pairs(list) do
+    table.insert(fts, key)
+  end
+
+  return fts
+end
 
 function M.formatter.list()
   return neokit.array.mergeTables(M.formatter, "name")
@@ -390,6 +421,16 @@ function M.formatter.listFormattersByFt()
   end
 
   return list
+end
+function M.formatter.listFormattersFt()
+  local list = groupByFt(M.formatter)
+  local fts = {}
+
+  for key, _ in pairs(list) do
+    table.insert(fts, key)
+  end
+
+  return fts
 end
 
 function M.list()

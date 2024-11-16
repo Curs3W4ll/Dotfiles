@@ -1,5 +1,10 @@
-return function()
-  require("which-key").setup({
+return {
+  "folke/which-key.nvim",
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+  },
+  event = "VeryLazy",
+  opts = {
     plugins = {
       spelling = {
         -- Enabling spelling suggestions
@@ -47,5 +52,5 @@ return function()
       buftypes = {},
       filetypes = {},
     },
-  })
-end
+  },
+}

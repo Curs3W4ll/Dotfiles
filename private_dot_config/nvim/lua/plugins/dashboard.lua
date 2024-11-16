@@ -1,6 +1,6 @@
 local birthday_day = 30
 local birthday_month = 8
-local ascii_art_directory = "plugins.dashboard-ascii-arts"
+local ascii_art_directory = "config.ascii-arts"
 local ascii_art_files = {
   new_year = "new-year",
   valentines = "valentines",
@@ -64,22 +64,11 @@ local function get_footer()
   local footer = {
     "",
     "",
-    string.format(
-      "Lazy took %s ms to start with %s plugins",
-      require("lazy").stats().startuptime,
-      require("lazy").stats().loaded
-    ),
-    string.format(
-      "%s plugins are currently not loaded",
-      require("lazy").stats().count - require("lazy").stats().loaded
-    ),
   }
   if require("lazy.status").has_updates() then
-    footer = vim.fn.extend(footer, { string.format("%s plugins require updates", require("lazy.status").updates()) })
+    footer = vim.fn.extend(footer, { "Plugins require updates" })
   end
   footer = vim.fn.extend(footer, {
-    "",
-    "",
     vim.fn.strftime("%A %e %B %G - %H:%M:%S"),
   })
   return footer
@@ -93,8 +82,13 @@ local function get_update_title()
   return title
 end
 
-return function()
-  require("dashboard").setup({ -- Used theme for greater
+return {
+  "glepnir/dashboard-nvim",
+  dependencies = {
+    "nvim-tree/nvim-web-devicons",
+  },
+  event = "VimEnter",
+  opts = { -- Used theme for greater
     theme = "hyper",
     -- Disable moving keys
     disable_move = true,
@@ -185,5 +179,5 @@ return function()
       -- Footer (last lines)
       footer = get_footer,
     },
-  })
-end
+  },
+}

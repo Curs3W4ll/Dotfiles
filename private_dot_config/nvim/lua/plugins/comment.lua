@@ -1,12 +1,14 @@
-return function()
-  require("nvim_comment").setup({
+return {
+  "terrortylor/nvim-comment",
+  main = "nvim_comment",
+  event = { "BufReadPre", "BufNewFile" },
+  opts = {
     hook = function()
-      print("Updating")
-      require("ts_context_commentstring").update_commentstring()
+      if vim.api.nvim_buf_get_option(0, "filetype") == "vue" then
+        require("ts_context_commentstring").update_commentstring()
+      end
     end,
-    -- Do not comment empty lines
     comment_empty = false,
-    -- Do not create default mappings
     create_mappings = false,
-  })
-end
+  },
+}

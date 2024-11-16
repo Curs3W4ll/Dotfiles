@@ -1,5 +1,7 @@
-return function()
-  require("neogen").setup({
+return {
+  "danymat/neogen",
+  event = { "BufReadPre", "BufNewFile" },
+  opts = {
     snippet_engine = "luasnip",
-  })
-end
+  },
+}
