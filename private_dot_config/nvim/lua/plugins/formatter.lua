@@ -14,8 +14,9 @@ end
 return {
   "mhartington/formatter.nvim",
   dependencies = {
-    "Curs3W4ll/NeoKit",
     "WhoIsSethDaniel/mason-tool-installer.nvim",
+    "Curs3W4ll/NeoKit",
+    "rcarriga/nvim-notify",
   },
   ft = function()
     return require("config.mason-tools").formatter.listFormattersFt()

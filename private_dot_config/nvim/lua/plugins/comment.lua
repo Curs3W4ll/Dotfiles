@@ -1,7 +1,7 @@
 return {
   "terrortylor/nvim-comment",
   main = "nvim_comment",
-  event = { "BufReadPre", "BufNewFile" },
+  event = "VeryLazy",
   opts = {
     hook = function()
       if vim.api.nvim_buf_get_option(0, "filetype") == "vue" then

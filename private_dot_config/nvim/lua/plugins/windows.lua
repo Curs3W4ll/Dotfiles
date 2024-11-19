@@ -4,7 +4,7 @@ return {
     "anuvyklack/middleclass",
     "anuvyklack/animation.nvim",
   },
-  event = { "WinClosed", "WinEnter", "WinLeave", "WinNew", "WinResized" },
+  event = "VimEnter",
   init = function()
     vim.o.winwidth = 15
     vim.o.winminwidth = 15

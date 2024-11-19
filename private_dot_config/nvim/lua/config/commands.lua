@@ -1,39 +1,46 @@
+local M = {
+  filetypeDetectGroup = vim.api.nvim_create_augroup("filetypeDetect", { clear = true }),
+  yankGroup = vim.api.nvim_create_augroup("yank", { clear = true }),
+  prefetchGroup = vim.api.nvim_create_augroup("prefetch", { clear = true }),
+  lintersGroup = vim.api.nvim_create_augroup("linters", { clear = true }),
+  formattersGroup = vim.api.nvim_create_augroup("linters", { clear = true }),
+}
+
 -- =======================================
 -- =============Auto commands=============
 -- =======================================
 
-local filetypeDetectGroup = vim.api.nvim_create_augroup("filetypeDetect", { clear = true })
 -- Set filetype for arduino building popups
 vim.api.nvim_create_autocmd({ "TermOpen", "TermEnter" }, {
   pattern = "*.ino*",
   command = "set filetype=arduinobuild",
-  group = filetypeDetectGroup,
+  group = M.filetypeDetectGroup,
 })
 -- Set filetype for c files
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*.h,*.c",
   command = "set filetype=c",
-  group = filetypeDetectGroup,
+  group = M.filetypeDetectGroup,
 })
--- Set filetype to groovy for Jenkinsfile to enable coloration
+-- Set filetype to Groovy for Jenkinsfile
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "Jenkinsfile",
   command = "set filetype=groovy",
-  group = filetypeDetectGroup,
+  group = M.filetypeDetectGroup,
 })
 -- Set indentation to 2 spaces for some files
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = "svg,javascript,typescript,typescriptreact,groovy,yaml,vue,css,json,vim,xml,html,lua",
   command = "set tabstop=2 shiftwidth=2",
-  group = filetypeDetectGroup,
+  group = M.filetypeDetectGroup,
 })
 -- Leave some windows faster
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = "qf,checkhealth,startuptime,help",
+  pattern = "qf,checkhealth,startuptime,help,gitsigns-blame",
   callback = function()
-    require("neokit.vim").map("*", "q", ":q<CR>", { buffer = true })
+    require("neokit.vim").map({ "n", "v", "x" }, "q", ":q<CR>", { buffer = true })
   end,
-  group = filetypeDetectGroup,
+  group = M.filetypeDetectGroup,
 })
 -- Disable folding in dashboard
 vim.api.nvim_create_autocmd({ "FileType" }, {
@@ -41,49 +48,23 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   callback = function()
     require("neokit.vim").unmap("*", " ")
   end,
-  group = filetypeDetectGroup,
-})
--- Markdown files bindings
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = "markdown",
-  callback = function()
-    require("keybindings.markdown-preview").markdown()
-  end,
-  group = filetypeDetectGroup,
-})
--- C++ files bindings
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = "cpp",
-  callback = function()
-    require("keybindings.cppman").cpp()
-  end,
-  group = filetypeDetectGroup,
-})
--- CPPMan files bindings
-vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = "cppman",
-  callback = function()
-    require("keybindings.cppman").cppman()
-  end,
-  group = filetypeDetectGroup,
+  group = M.filetypeDetectGroup,
 })
 
-local yankGroup = vim.api.nvim_create_augroup("yank", { clear = true })
 -- Blink content when yanking
 vim.api.nvim_create_autocmd({ "TextYankPost" }, {
   callback = function()
     vim.highlight.on_yank()
   end,
-  group = yankGroup,
+  group = M.yankGroup,
 })
 
-local prefetchGroup = vim.api.nvim_create_augroup("prefetch", { clear = true })
 -- Preload tabnine when opening a file
 vim.api.nvim_create_autocmd({ "BufRead" }, {
-  group = prefetchGroup,
   callback = function()
     require("cmp_tabnine"):prefetch(vim.fn.expand("%:p"))
   end,
+  group = M.prefetchGroup,
 })
 
 -- Display notifications with mason tool installer plugin
@@ -103,20 +84,26 @@ vim.api.nvim_create_autocmd("User", {
   end,
 })
 
--- Linters
-local lintersGroup = vim.api.nvim_create_augroup("linters", { clear = true })
+-- Auto lint
 vim.api.nvim_create_autocmd({ "BufRead", "BufWrite" }, {
   callback = function()
     require("lint").try_lint()
   end,
-  group = lintersGroup,
+  group = M.lintersGroup,
 })
--- Formatters
-local formattersGroup = vim.api.nvim_create_augroup("linters", { clear = true })
+
 -- Format on buffer save
 vim.api.nvim_create_autocmd({ "BufWritePost" }, {
-  command = "FormatWriteLock",
-  group = formattersGroup,
+  command = "silent! FormatWriteLock",
+  group = M.formattersGroup,
+})
+
+-- Disable default LSP bindings
+vim.api.nvim_create_autocmd("LspAttach", {
+  callback = function(args)
+    vim.keymap.del("n", "K", { buffer = args.buf })
+  end,
+  group = M.lintersGroup,
 })
 
 -- =======================================
@@ -127,3 +114,7 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 vim.api.nvim_create_user_command("W", "w", {})
 -- Make an alias between Q and q
 vim.api.nvim_create_user_command("Q", "q", {})
+-- Make an alias between X and x
+vim.api.nvim_create_user_command("X", "x", {})
+
+return M

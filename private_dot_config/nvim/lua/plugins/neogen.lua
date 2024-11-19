@@ -1,6 +1,6 @@
 return {
   "danymat/neogen",
-  event = { "BufReadPre", "BufNewFile" },
+  event = "VeryLazy",
   opts = {
     snippet_engine = "luasnip",
   },

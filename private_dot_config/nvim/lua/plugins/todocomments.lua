@@ -3,7 +3,7 @@ return {
   dependencies = {
     "nvim-lua/plenary.nvim",
   },
-  event = "VimEnter",
+  event = "VeryLazy",
   opts = {
     highlight = {
       -- Highlight background instead of foreground

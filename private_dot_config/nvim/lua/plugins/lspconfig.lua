@@ -37,21 +37,15 @@ return {
     -- ================================
     -- ===========LSP setup============
     -- ================================
-    local default_on_attach = require("keybindings.lspconfig").lsp
-
     for _, server in ipairs(lsp_servers) do
       local lsp_name = server.name
       if server.lsp_name ~= nil then
         lsp_name = server.lsp_name
       end
-
-      local on_attach = default_on_attach
-      if server.on_attach ~= nil then
-        on_attach = server.on_attach
-      end
-
       local settings = {
-        on_attach = on_attach,
+        on_attach = function(client, bufnbr)
+          require("config.keybindings.plugins.lspconfig").setup(client, bufnbr)
+        end,
         capabilities = capabilities,
       }
       if server.additional_settings ~= nil then

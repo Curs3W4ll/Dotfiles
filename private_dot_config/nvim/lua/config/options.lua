@@ -15,7 +15,6 @@ local options = {
   wildignorecase = true, -- Make files auto-completion case insensitive
   wildignore = neokit.vim.getOption("wildignore") .. "*.a,*.o,*.gcno,*.gcda", -- Ignore patterns while auto-completing files
   ignorecase = true, -- Make the search case insensitive
-  termguicolors = true, -- Enable 24 bit colors
   clipboard = "unnamedplus", -- Using '+' register for yank, delete... operations
   cpoptions = "B", -- Disable vi-compatible mode
   number = true, -- Display current line number

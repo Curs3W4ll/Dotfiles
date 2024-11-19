@@ -4,7 +4,7 @@ return {
   dependencies = {
     "nvim-tree/nvim-web-devicons",
   },
-  event = { "BufReadPre", "BufNewFile" },
+  event = "VimEnter",
   opts = function()
     local signs = require("config.signs")
 

@@ -4,7 +4,6 @@ return {
     "kevinhwang91/nvim-hlslens",
     "lewis6991/gitsigns.nvim",
   },
-  event = { "BufReadPre", "BufNewFile" },
   opts = function()
     local colors = require("tokyonight.colors").setup()
 
