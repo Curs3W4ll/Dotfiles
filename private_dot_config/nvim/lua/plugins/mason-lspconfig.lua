@@ -1,5 +1,11 @@
-return function()
-  require("mason-lspconfig").setup({
+return {
+  "williamboman/mason-lspconfig.nvim",
+  dependencies = {
+    "williamboman/mason.nvim",
+    "WhoIsSethDaniel/mason-tool-installer.nvim",
+  },
+  lazy = true,
+  opts = {
     handlers = {
       -- Comes from https://github.com/williamboman/mason-lspconfig.nvim/issues/371#issuecomment-2018863753
       ["volar"] = function()
@@ -24,5 +30,5 @@ return function()
         })
       end,
     },
-  })
-end
+  },
+}

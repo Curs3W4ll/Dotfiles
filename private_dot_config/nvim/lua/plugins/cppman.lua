@@ -1,6 +1,8 @@
-return function()
-
-    require("cppman").setup({
-    })
-
-end
+return {
+  "madskjeldgaard/cppman.nvim",
+  dependencies = {
+    "MunifTanjim/nui.nvim",
+  },
+  ft = { "cpp", "c" },
+  opts = {},
+}

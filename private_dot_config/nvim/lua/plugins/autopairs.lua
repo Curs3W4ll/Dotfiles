@@ -1,5 +1,7 @@
-return function()
-  require("nvim-autopairs").setup({
+return {
+  "windwp/nvim-autopairs",
+  event = "InsertEnter",
+  opts = {
     check_ts = true,
     fast_wrap = {
       map = "<C-e>",
@@ -14,5 +16,5 @@ return function()
       highlight = "Search",
       highlight_grey = "Comment",
     },
-  })
-end
+  },
+}
