@@ -106,6 +106,12 @@ if ! [ -d $zshInstallPath ]; then
     git clone https://github.com/zsh-users/zsh-syntax-highlighting.git $zshInstallPath
 fi
 
+zshInstallPath=$zshCustomPath/plugins/zsh-lsd
+if ! [ -d $zshInstallPath ]; then
+    echo -e "${CyanColor}Installing zsh-lsd plugin${NoColor}"
+    git clone https://github.com/z-shell/zsh-lsd.git $zshInstallPath
+fi
+
 zshInstallPath=$zshCustomPath/themes/powerlevel10k
 if ! [ -d $zshInstallPath ]; then
     echo -e "${CyanColor}Installing PowerLevel10k theme${NoColor}"

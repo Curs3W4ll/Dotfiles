@@ -15,6 +15,11 @@
   url: "https://github.com/zsh-users/zsh-autosuggestions"
   refreshPeriod: 168h
 
+.oh-my-zsh/custom/plugins/zsh-lsd:
+  type: git-repo
+  url: "https://github.com/zsh-users/zsh-lsd"
+  refreshPeriod: 168h
+
 .oh-my-zsh/custom/themes/powerlevel10k:
   type: git-repo
   url: "https://github.com/romkatv/powerlevel10k"
