@@ -101,7 +101,11 @@ vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 -- Disable default LSP bindings
 vim.api.nvim_create_autocmd("LspAttach", {
   callback = function(args)
-    vim.keymap.del("n", "K", { buffer = args.buf })
+    require("neokit.array").forEach(vim.api.nvim_get_keymap("n"), function(keymap)
+      if keymap.lhs == "K" then
+        vim.keymap.del("n", "K", { buffer = args.buf })
+      end
+    end)
   end,
   group = M.lintersGroup,
 })
