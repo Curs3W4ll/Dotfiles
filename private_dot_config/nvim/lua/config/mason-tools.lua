@@ -1,4 +1,6 @@
 local neokit = require("neokit")
+local mason_packages = vim.fn.stdpath("data") .. "/mason/packages"
+local volar_path = mason_packages .. "/vue-language-server/node_modules/@vue/language-server"
 
 local M = {
   lsp = {
@@ -48,7 +50,21 @@ local M = {
     { name = "eslint" }, -- TODO: Configure
     --{ name = "quick_lint_js" }, -- TODO: Configure
     --{ name = "rome" }, -- TODO: Configure
-    { name = "ts_ls" }, -- TODO: Configure
+    {
+      name = "ts_ls",
+      -- NOTE: For vue support, comes from https://github.com/williamboman/mason-lspconfig.nvim/issues/371#issuecomment-2188015156
+      additional_settings = {
+        init_options = {
+          plugins = {
+            {
+              name = "@vue/typescript-plugin",
+              location = volar_path,
+              languages = { "vue" },
+            },
+          },
+        },
+      },
+    }, -- TODO: Configure
     --{ name = "vtsls" }, -- TODO: Configure
     -- JSON
     --{ name = "jsonls" }, -- TODO: Configure
@@ -106,7 +122,17 @@ local M = {
     -- Vim
     --{ name = "vimls" }, -- TODO: Configure
     -- VueJS
-    { name = "volar" }, -- TODO: Configure
+    {
+      name = "volar",
+      -- NOTE: For vue support, comes from https://github.com/williamboman/mason-lspconfig.nvim/issues/371#issuecomment-2188015156
+      additional_settings = {
+        init_options = {
+          vue = {
+            hybridMode = false,
+          },
+        },
+      },
+    }, -- TODO: Configure
     -- XML
     --{ name = "lemminx" }, -- TODO: Configure
     -- YAML
