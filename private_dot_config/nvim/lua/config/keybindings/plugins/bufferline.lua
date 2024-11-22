@@ -29,6 +29,7 @@ return {
       { "<leader>bcp", "<cmd>BufferLinePickClose<cr>", desc = "Pick buffer to close" },
       { "<leader>bc<", "<cmd>BufferLineCloseLeft<cr>", desc = "Close left buffer" },
       { "<leader>bc>", "<cmd>BufferLineCloseRight<cr>", desc = "Close right buffer" },
+      { "<leader>bco", "<cmd>BufferLineCloseOthers<cr>", desc = "Close other buffers" },
       -- Shortands
       { "<leader>k", "<cmd>BufferLineCycleNext<cr>", desc = "Go to next buffer" },
       { "<leader>j", "<cmd>BufferLineCyclePrev<cr>", desc = "Go to previous buffer" },
