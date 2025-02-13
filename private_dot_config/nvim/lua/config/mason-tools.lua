@@ -32,6 +32,14 @@ local M = {
     --{ name = "cssls" }, -- TODO: Configure
     --{ name = "cssmodules_ls" }, -- TODO: Configure
     --{ name = "unocss" }, -- TODO: Configure
+    {
+      name = "tailwindcss-language-server",
+      lsp_name = "tailwindcss",
+      additional_settings = {
+        filetypes = { "typescript", "javascript", "javascriptreact", "typescriptreact", "vue", "css" },
+        root_dir = require("lspconfig").util.root_pattern("tailwind.config.*"),
+      },
+    }, -- TODO: Configure
     -- Deno
     --{ name = "denols" }, -- TODO: Configure
     -- Docker
