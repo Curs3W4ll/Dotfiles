@@ -103,8 +103,8 @@ local M = {
     --{ name = "jedi_language_server" }, -- TODO: Configure
     --{ name = "pylyzer" }, -- TODO: Configure
     --{ name = "pyre" }, -- TODO: Configure
-    --{ name = "pyright" }, -- TODO: Configure
-    --{ name = "python-lsp-server" }, -- TODO: Configure
+    { name = "pyright" }, -- TODO: Configure
+    { name = "python-lsp-server", lsp_name = "pylsp" }, -- TODO: Configure
     --{ name = "ruff_lsp" }, -- TODO: Configure
     --{ name = "sourcery" }, -- TODO: Configure
     -- Ruby
