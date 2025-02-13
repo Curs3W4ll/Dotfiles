@@ -35,6 +35,23 @@ return {
           ".git/",
         },
       },
+      extensions = {
+        gitmoji = {
+          action = function(entry)
+            vim.ui.input({ prompt = "Enter commit message: " .. entry.value.value .. " " }, function(msg)
+              if not msg then
+                return
+              end
+
+              local git_tool = ":!git"
+              if vim.g.loaded_fugitive then
+                git_tool = ":G"
+              end
+              vim.cmd(string.format("%s commit -m '%s %s'", git_tool, entry.value.text, msg))
+            end)
+          end,
+        },
+      },
     }
   end,
   config = function(_, opts)
