@@ -370,7 +370,7 @@ local M = {
     -- { name = "prettier" }, -- AngularJS, CSS, GraphQL, HTML, JSON, JSX, Javascript / Typescript, Markdown... -- TODO: Configure
     {
       name = "prettierd",
-      ft = { "javascript", "typescript", "vue", "html", "css" },
+      ft = { "javascript", "typescript", "vue", "html", "css", "markdown", "json" },
     }, -- AngularJS, CSS, GraphQL, HTML, JSON, JSX, Javascript / Typescript, Markdown... -- TODO: Configure
   },
 }
