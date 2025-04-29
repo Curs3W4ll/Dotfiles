@@ -417,11 +417,76 @@ function rgpl {
 function gprune {
     git prune ; git fetch -p ; git branch -vv | awk '/\[.*: gone\]/ || !/\[origin\// {print $1}' | xargs -r -I {} git branch -D {}
 }
+function firstfailingcommit {
+    local cmd="$1"
+
+    if [ -z "$cmd" ]; then
+        echo "Usage: firstfailingcommit \"<command>\""
+        return 1
+    fi
+    if ! git diff-index --quiet HEAD --; then
+        echo "Error: You have uncommitted changes. Please commit or stash them first."
+        return 1
+    fi
+
+    local current_commit=$(git rev-parse HEAD)
+
+    if eval "$cmd" >/dev/null 2>&1; then
+        echo "Error: Current commit ($current_commit) does not fail for the given command."
+        return 1
+    fi
+    sleep 1
+    git restore --quiet .
+
+    echo "Starting search from $current_commit..."
+
+    local last_good_commit=""
+    local last_bad_commit="$current_commit"
+    local commits_back=0
+
+    while true; do
+        if ! git rev-parse HEAD^ >/dev/null 2>&1; then
+            echo "Reached the beginning of history."
+            break
+        fi
+        git checkout HEAD^ --quiet
+
+        local commit=$(git rev-parse HEAD)
+        commits_back=$((commits_back + 1))
+
+        if eval "$cmd" >/dev/null 2>&1; then
+            sleep 1
+            echo "$commit works (~$commits_back)"
+            last_good_commit="$commit"
+            git restore --quiet .
+            break
+        else
+            sleep 1
+            echo "$commit fails (~$commits_back)"
+            last_bad_commit="$commit"
+        fi
+        git restore --quiet .
+    done
+
+    if [ -n "$last_good_commit" ]; then
+        echo "Commit introducing failure is $last_bad_commit"
+        git checkout "$last_bad_commit" --quiet
+        return 0
+    else
+        echo "All commits failed for this command."
+        return 1
+    fi
+}
 
 
 # Get custom profile
 if [ -r $HOME/.zsh_profile ]; then
     source $HOME/.zsh_profile
+fi
+
+# Init zi
+if [[ -r "/Users/corentin/.config/zi/init.zsh" ]]; then
+  source "/Users/corentin/.config/zi/init.zsh" && zzinit
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
