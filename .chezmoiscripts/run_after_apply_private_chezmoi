@@ -1,0 +1,7 @@
+#!/bin/sh
+
+privateDotfilesPath="$HOME/.local/share/chezmoi/external_dotfiles-private"
+
+if [ -e "$privateDotfilesPath" ]; then
+  chezmoi --source "$privateDotfilesPath" --persistent-state "$privateDotfilesPath/chezmoistate.boltdb" apply 
+fi

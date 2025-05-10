@@ -1,0 +1,3 @@
+[submodule "external_dotfiles-private"]
+	path = external_dotfiles-private
+	url = git@github.com:Curs3W4ll/Dotfiles-private.git

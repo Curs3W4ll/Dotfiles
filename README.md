@@ -31,6 +31,10 @@ As said before, I use `chezmoi` to manage my configuration.
 `chezmoi` is a Dotfiles manager CLI with many cool features, it can handle files, templates, secrets and more.
 If you just want to use one of my configuration without syncing all of them, do not use `chezmoi` and use [installers per configuration](#installers-per-configuration).
 
+#### Private configuration
+
+My `chezmoi` configuration is handling my private configuration stored within the submodule configured in this repository (in `external_dotfiles-private/`). You will not have access to this file, but it doesn't break the configuration.
+
 <details>
 <summary>More information and tips for chezmoi</summary>
 
@@ -88,6 +92,7 @@ To help you install only the configurations you want, you can use the following 
 
 Execute the following command to install my ZSH configuration.
 See [configuration details](#zsh).
+
 ```sh
 sh -c 'rm -f /tmp/zshInstaller.sh && curl -H "Cache-Control: no-cache, no-store" -fLo /tmp/zshInstaller.sh --create-dirs "https://raw.githubusercontent.com/Curs3W4ll/Dotfiles/main/installers/ZSH.sh" && chmod +x /tmp/zshInstaller.sh && /tmp/./zshInstaller.sh'
 ```
@@ -101,6 +106,7 @@ sh -c 'rm -f /tmp/zshInstaller.sh && curl -H "Cache-Control: no-cache, no-store"
 
 Execute the following command to install my Terminator configuration.
 See [configuration details](#terminator).
+
 ```sh
 sh -c 'rm -f /tmp/terminatorInstaller.sh && curl -H "Cache-Control: no-cache, no-store" -fLo /tmp/terminatorInstaller.sh --create-dirs "https://raw.githubusercontent.com/Curs3W4ll/Dotfiles/main/installers/Terminator.sh" && chmod +x /tmp/terminatorInstaller.sh && /tmp/./terminatorInstaller.sh'
 ```
@@ -114,6 +120,7 @@ sh -c 'rm -f /tmp/terminatorInstaller.sh && curl -H "Cache-Control: no-cache, no
 
 Execute the following command to install my Git configuration.
 See [configuration details](#git).
+
 ```sh
 sh -c 'rm -f /tmp/gitInstaller.sh && curl -H "Cache-Control: no-cache, no-store" -fLo /tmp/gitInstaller.sh --create-dirs "https://raw.githubusercontent.com/Curs3W4ll/Dotfiles/main/installers/Git.sh" && chmod +x /tmp/gitInstaller.sh && /tmp/./gitInstaller.sh'
 ```
@@ -127,6 +134,7 @@ sh -c 'rm -f /tmp/gitInstaller.sh && curl -H "Cache-Control: no-cache, no-store"
 
 Execute the following command to install my Neovim configuration (Lua version).
 See [configuration details](#neovim).
+
 ```sh
 sh -c 'rm -f /tmp/nvimLuaInstaller.sh && curl -H "Cache-Control: no-cache, no-store" -fLo /tmp/nvimLuaInstaller.sh --create-dirs "https://raw.githubusercontent.com/Curs3W4ll/Dotfiles/main/installers/Neovim_lua.sh" && chmod +x /tmp/nvimLuaInstaller.sh && /tmp/./nvimLuaInstaller.sh'
 ```
@@ -137,6 +145,7 @@ If you want to install the older version of my Neovim configuration (using Vimsc
 See [configuration details](#neovim).
 
 **:warning: This configuration is not maintained anymore, use it at your own risk**
+
 ```sh
 sh -c 'rm -f /tmp/nvimVSInstaller.sh && curl -H "Cache-Control: no-cache, no-store" -fLo /tmp/nvimVSInstaller.sh --create-dirs "https://raw.githubusercontent.com/Curs3W4ll/Dotfiles/main/installers/Neovim_vimscript.sh" && chmod +x /tmp/nvimVSInstaller.sh && /tmp/./nvimVSInstaller.sh'
 ```
@@ -150,6 +159,7 @@ In this Dotfiles repository, you will find configurations I use, more details be
 You will also find some documentation about common topics [in the wiki](https://github.com/Curs3W4ll/Dotfiles/wiki).
 
 ---
+
 ### ZSH
 
 My ZSH configuration defines aliases, colors and other things.  
@@ -158,6 +168,7 @@ My ZSH configuration uses OhMyZSH with plugins and the p10k theme.
 [More information in the wiki](https://github.com/Curs3W4ll/Dotfiles/wiki/ZSH)
 
 ---
+
 ### Terminator
 
 My Terminator configuration defines how the Terminator will look.  
@@ -166,6 +177,7 @@ It will also enable new key binds to make Terminator more easy to use.
 [More information in the wiki](https://github.com/Curs3W4ll/Dotfiles/wiki/Terminator)
 
 ---
+
 ### ITerm2
 
 My ITerm2 configuration defines how the settings for ITerm2 (settings & profiles).
@@ -173,6 +185,7 @@ My ITerm2 configuration defines how the settings for ITerm2 (settings & profiles
 [More information in the wiki](https://github.com/Curs3W4ll/Dotfiles/wiki/ITerm2)
 
 ---
+
 ### Git
 
 My Git configuration defines simple config such as the username and email used when committing changes.
@@ -180,6 +193,7 @@ My Git configuration defines simple config such as the username and email used w
 [More information in the wiki](https://github.com/Curs3W4ll/Dotfiles/wiki/Git)
 
 ---
+
 ### Neovim
 
 I previously used a Vimscript Neovim configuration I have built myself on over 2 years. But I wanted to change to the new Lua technology and refresh a bit my configuration.
